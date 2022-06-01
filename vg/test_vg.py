@@ -3,10 +3,35 @@ from config import NEBULA_CONF
 
 import os
 
+"""
+
+--nproc_per_node=1
+--master_port=6081
+../../evaluate.py
+../../dataset/refcoco_data/refcoco_val.tsv
+--path=../../checkpoints/refcoco_large_best.pt
+--user-dir=../../models/ofa/ofa_module
+--task=refcoco
+--batch-size=16
+--log-format=simple
+--log-interval=10
+--seed=7
+--gen-subset='refcoco_val'
+--results-path=../../results/refcoco
+--beam=5
+--min-len=4
+--max-len-a=0
+--max-len-b=4
+--no-repeat-ngram-size=3
+--fp16
+--num-workers=0
+--inference-pipeline
+--model-overrides="{\"data\":\"../../dataset/refcoco_data/refcoco_val.tsv\",\"bpe_dir\":\"../../utils/BPE\",\"selected_cols\":\"0,4,2,3\"}"
+"""
 
 class VisualGrounding:
     def __init__(self) -> None:
-        self.ARANGO_HOST = os.getenv('ARANGO_HOST', 'ec2-18-158-123-0.eu-central-1.compute.amazonaws.com')
+        self.ARANGO_HOST = os.getenv('nproc_per_node', '1')
         self.ARANGO_PORT = os.getenv('ARANGO_PORT', '8529')
         self.ARANGO_PROXY_PORT = os.getenv('ARANGO_PROXY_PORT', '80')
         self.ARANGO_DB = os.getenv('ARANGO_DB', "nebula_development")
