@@ -15,19 +15,14 @@ from torchvision import transforms
 # Register refcoco task
 tasks.register_task('refcoco', RefcocoTask)
 
-# turn on cuda if GPU is available
-use_cuda = torch.cuda.is_available()
-# use fp16 only when GPU is available
-use_fp16 = False
-
-
 class OfaMultiModalVisualGrounding():
 
     def __init__(self):
         # turn on cuda if GPU is available
         self.use_cuda = torch.cuda.is_available()
         # use fp16 only when GPU is available
-        use_fp16 = False
+        # use fp16 only when GPU is available
+        self.use_fp16 = False
 
         # Load pretrained ckpt & config
         overrides = {"bpe_dir": "../../utils/BPE"}
@@ -52,9 +47,9 @@ class OfaMultiModalVisualGrounding():
         # Move models to GPU
         for model in self.models:
             model.eval()
-            if use_fp16:
+            if self.use_fp16:
                 model.half()
-            if use_cuda and not self.cfg.distributed_training.pipeline_model_parallel:
+            if self.use_cuda and not self.cfg.distributed_training.pipeline_model_parallel:
                 model.cuda()
             model.prepare_for_inference_(self.cfg)
 
@@ -128,8 +123,8 @@ class OfaMultiModalVisualGrounding():
         # Run eval step for refcoco
         # Construct input sample & preprocess for GPU if cuda available
         sample = self.construct_sample(image, text)
-        sample = utils.move_to_cuda(sample) if use_cuda else sample
-        sample = utils.apply_to_sample(self.apply_half, sample) if use_fp16 else sample
+        sample = utils.move_to_cuda(sample) if self.use_cuda else sample
+        sample = utils.apply_to_sample(self.apply_half, sample) if self.use_fp16 else sample
 
         with torch.no_grad():
             result, scores, lprob = eval_step(self.task, self.generator, self.models, sample)
