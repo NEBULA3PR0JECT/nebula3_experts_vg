@@ -1,0 +1,1536 @@
+##################   H K #########################
+../../models/ofa/ofa_module
+##################   H K #########################
+../../models/ofa/ofa_module
+single-machine distributed training is initialized.
+##################   H K #########################
+../../models/ofa/ofa_module
+cfg False
+2022-05-22 16:41:42 | INFO | ofa.evaluate | {'_name': None, 'common': {'_name': None, 'no_progress_bar': False, 'log_interval': 10, 'log_format': 'simple', 'log_file': None, 'tensorboard_logdir': None, 'wandb_project': None, 'azureml_logging': False, 'seed': 7, 'cpu': False, 'tpu': False, 'bf16': False, 'memory_efficient_bf16': False, 'fp16': True, 'memory_efficient_fp16': False, 'fp16_no_flatten_grads': False, 'fp16_init_scale': 128, 'fp16_scale_window': None, 'fp16_scale_tolerance': 0.0, 'on_cpu_convert_precision': False, 'min_loss_scale': 0.0001, 'threshold_loss_scale': None, 'amp': False, 'amp_batch_retries': 2, 'amp_init_scale': 128, 'amp_scale_window': None, 'user_dir': '../../models/ofa/ofa_module', 'empty_cache_freq': 0, 'all_gather_list_size': 16384, 'model_parallel_size': 1, 'quantization_config_path': None, 'profile': False, 'reset_logging': False, 'suppress_crashes': False, 'use_plasma_view': False, 'plasma_path': '/tmp/plasma'}, 'common_eval': {'_name': None, 'path': '../../checkpoints/refcoco_large_best.pt', 'post_process': None, 'quiet': False, 'model_overrides': '{"data":"../../dataset/refcoco_data/refcoco_val.tsv","bpe_dir":"../../utils/BPE","selected_cols":"0,4,2,3"}', 'results_path': '../../results/refcoco'}, 'distributed_training': {'_name': None, 'distributed_world_size': 1, 'distributed_num_procs': 1, 'distributed_rank': 0, 'distributed_backend': 'nccl', 'distributed_init_method': 'env://', 'distributed_port': -1, 'device_id': 0, 'distributed_no_spawn': True, 'ddp_backend': 'pytorch_ddp', 'ddp_comm_hook': 'none', 'bucket_cap_mb': 25, 'fix_batches_to_gpus': False, 'find_unused_parameters': False, 'gradient_as_bucket_view': False, 'fast_stat_sync': False, 'heartbeat_timeout': -1, 'broadcast_buffers': False, 'slowmo_momentum': None, 'slowmo_algorithm': 'LocalSGD', 'localsgd_frequency': 3, 'nprocs_per_node': 1, 'pipeline_model_parallel': False, 'pipeline_balance': None, 'pipeline_devices': None, 'pipeline_chunks': 0, 'pipeline_encoder_balance': None, 'pipeline_encoder_devices': None, 'pipeline_decoder_balance': None, 'pipeline_decoder_devices': None, 'pipeline_checkpoint': 'never', 'zero_sharding': 'none', 'fp16': True, 'memory_efficient_fp16': False, 'tpu': False, 'no_reshard_after_forward': False, 'fp32_reduce_scatter': False, 'cpu_offload': False, 'use_sharded_state': False}, 'dataset': {'_name': None, 'num_workers': 0, 'skip_invalid_size_inputs_valid_test': False, 'max_tokens': None, 'batch_size': 16, 'required_batch_size_multiple': 8, 'required_seq_len_multiple': 1, 'dataset_impl': None, 'data_buffer_size': 10, 'train_subset': 'train', 'valid_subset': 'valid', 'combine_valid_subsets': None, 'ignore_unused_valid_subsets': False, 'validate_interval': 1, 'validate_interval_updates': 0, 'validate_after_updates': 0, 'fixed_validation_seed': None, 'disable_validation': False, 'max_tokens_valid': None, 'batch_size_valid': 16, 'max_valid_steps': None, 'curriculum': 0, 'gen_subset': 'refcoco_val', 'num_shards': 1, 'shard_id': 0}, 'optimization': {'_name': None, 'max_epoch': 0, 'max_update': 0, 'stop_time_hours': 0.0, 'clip_norm': 0.0, 'sentence_avg': False, 'update_freq': [1], 'lr': [0.25], 'stop_min_lr': -1.0, 'use_bmuf': False}, 'checkpoint': {'_name': None, 'save_dir': 'checkpoints', 'restore_file': 'checkpoint_last.pt', 'finetune_from_model': None, 'reset_dataloader': False, 'reset_lr_scheduler': False, 'reset_meters': False, 'reset_optimizer': False, 'optimizer_overrides': '{}', 'save_interval': 1, 'save_interval_updates': 0, 'keep_interval_updates': -1, 'keep_interval_updates_pattern': -1, 'keep_last_epochs': -1, 'keep_best_checkpoints': -1, 'no_save': False, 'no_epoch_checkpoints': False, 'no_last_checkpoints': False, 'no_save_optimizer_state': False, 'best_checkpoint_metric': 'loss', 'maximize_best_checkpoint_metric': False, 'patience': -1, 'checkpoint_suffix': '', 'checkpoint_shard_count': 1, 'load_checkpoint_on_all_dp_ranks': False, 'write_checkpoints_asynchronously': False, 'model_parallel_size': 1, 'use_ema_weights_to_init_param': False, 'use_latest_weights_to_init_ema': False}, 'bmuf': {'_name': None, 'block_lr': 1.0, 'block_momentum': 0.875, 'global_sync_iter': 50, 'warmup_iterations': 500, 'use_nbm': False, 'average_sync': False, 'distributed_world_size': 1}, 'generation': {'_name': None, 'beam': 5, 'nbest': 1, 'max_len_a': 0.0, 'max_len_b': 4, 'min_len': 4, 'match_source_len': False, 'unnormalized': False, 'no_early_stop': False, 'no_beamable_mm': False, 'lenpen': 1.0, 'unkpen': 0.0, 'replace_unk': None, 'sacrebleu': False, 'score_reference': False, 'prefix_size': 0, 'no_repeat_ngram_size': 3, 'sampling': False, 'sampling_topk': -1, 'sampling_topp': -1.0, 'constraints': None, 'temperature': 1.0, 'diverse_beam_groups': -1, 'diverse_beam_strength': 0.5, 'diversity_rate': -1.0, 'print_alignment': None, 'print_step': False, 'lm_path': None, 'lm_weight': 0.0, 'iter_decode_eos_penalty': 0.0, 'iter_decode_max_iter': 10, 'iter_decode_force_max_iter': False, 'iter_decode_with_beam': 1, 'iter_decode_with_external_reranker': False, 'retain_iter_history': False, 'retain_dropout': False, 'retain_dropout_modules': None, 'decoding_format': None, 'no_seed_provided': False}, 'eval_lm': {'_name': None, 'output_word_probs': False, 'output_word_stats': False, 'context_window': 0, 'softmax_batch': 9223372036854775807}, 'interactive': {'_name': None, 'buffer_size': 0, 'input': '-'}, 'model': None, 'task': {'_name': 'refcoco', 'data': '../../dataset/refcoco_data/refcoco_val.tsv', 'selected_cols': None, 'bpe_dir': None, 'max_source_positions': 1024, 'max_target_positions': 1024, 'max_src_length': 128, 'max_tgt_length': 30, 'code_dict_size': 8192, 'patch_image_size': 480, 'num_bins': 1000, 'imagenet_default_mean_and_std': False, 'constraint_range': None, 'eval_acc': False, 'eval_args': '{}', 'eval_print_samples': False, 'max_image_size': 512, 'scst': False, 'scst_args': '{}'}, 'criterion': {'_name': 'cross_entropy', 'sentence_avg': True}, 'optimizer': None, 'lr_scheduler': {'_name': 'fixed', 'force_anneal': None, 'lr_shrink': 0.1, 'warmup_updates': 0, 'lr': [0.25]}, 'scoring': {'_name': 'bleu', 'pad': 1, 'eos': 2, 'unk': 3}, 'bpe': None, 'tokenizer': None, 'ema': {'_name': None, 'store_ema': False, 'ema_decay': 0.9999, 'ema_start_update': 0, 'ema_seed_model': None, 'ema_update_freq': 1, 'ema_fp32': False}, 'simul_type': None}
+cfg.common_eval.path refcoco_val
+2022-05-22 16:41:42 | INFO | ofa.evaluate | loading model(s) from ../../checkpoints/refcoco_large_best.pt
+2022-05-22 16:41:46 | INFO | tasks.ofa_task | source dictionary: 59457 types
+2022-05-22 16:41:46 | INFO | tasks.ofa_task | target dictionary: 59457 types
+ #################################### HK ################################################
+<class 'pandas.core.series.Series'>
+114207740_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114207740_mdf_2_scene_0.png
+text A man shoots himself in the leg with a pistol in front of other men in a street
+[{'uniq_id': '42', 'box': [0.0, 183.3961181640625, 430.510498046875, 948.1233520507812]}]
+<class 'pandas.core.series.Series'>
+114207740_mdf_14_scene_0
+../../lsmdc_s1_gt_mdf/114207740_mdf_14_scene_0.png
+text A man shoots himself in the leg with a pistol in front of other men in a street
+[{'uniq_id': '42', 'box': [565.8137817382812, 92.2747802734375, 1576.488525390625, 940.04931640625]}]
+<class 'pandas.core.series.Series'>
+114207740_mdf_26_scene_0
+../../lsmdc_s1_gt_mdf/114207740_mdf_26_scene_0.png
+text A man shoots himself in the leg with a pistol in front of other men in a street
+[{'uniq_id': '42', 'box': [565.8137817382812, 131.49156188964844, 1531.3873291015625, 944.6630249023438]}]
+<class 'pandas.core.series.Series'>
+114207740_mdf_30_scene_1
+../../lsmdc_s1_gt_mdf/114207740_mdf_30_scene_1.png
+text A man shoots himself in the leg with a pistol in front of other men in a street
+[{'uniq_id': '42', 'box': [512.5125122070312, 325.26861572265625, 1018.8748779296875, 937.742431640625]}]
+<class 'pandas.core.series.Series'>
+114207740_mdf_35_scene_1
+../../lsmdc_s1_gt_mdf/114207740_mdf_35_scene_1.png
+text A man shoots himself in the leg with a pistol in front of other men in a street
+[{'uniq_id': '42', 'box': [479.7117004394531, 389.8609619140625, 981.9739379882812, 945.8164672851562]}]
+<class 'pandas.core.series.Series'>
+114207740_mdf_41_scene_1
+../../lsmdc_s1_gt_mdf/114207740_mdf_41_scene_1.png
+text A man shoots himself in the leg with a pistol in front of other men in a street
+[{'uniq_id': '42', 'box': [537.1130981445312, 292.972412109375, 953.2732543945312, 931.9752807617188]}]
+<class 'pandas.core.series.Series'>
+114207740_mdf_45_scene_2
+../../lsmdc_s1_gt_mdf/114207740_mdf_45_scene_2.png
+text A man shoots himself in the leg with a pistol in front of other men in a street
+[{'uniq_id': '42', 'box': [795.41943359375, 261.8296813964844, 1463.7357177734375, 942.356201171875]}]
+<class 'pandas.core.series.Series'>
+114207740_mdf_46_scene_2
+../../lsmdc_s1_gt_mdf/114207740_mdf_46_scene_2.png
+text A man shoots himself in the leg with a pistol in front of other men in a street
+[{'uniq_id': '42', 'box': [795.41943359375, 261.8296813964844, 1465.7857666015625, 942.356201171875]}]
+<class 'pandas.core.series.Series'>
+114207740_mdf_47_scene_2
+../../lsmdc_s1_gt_mdf/114207740_mdf_47_scene_2.png
+text A man shoots himself in the leg with a pistol in front of other men in a street
+[{'uniq_id': '42', 'box': [795.41943359375, 256.0625305175781, 1469.8858642578125, 942.356201171875]}]
+<class 'pandas.core.series.Series'>
+114207265_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114207265_mdf_2_scene_0.png
+text Marry Jane walks out the building and gets close to fewpeople that are clapping hands
+[{'uniq_id': '42', 'box': [0.0, 432.53802490234375, 307.50750732421875, 971.1920166015625]}]
+<class 'pandas.core.series.Series'>
+114207265_mdf_24_scene_0
+../../lsmdc_s1_gt_mdf/114207265_mdf_24_scene_0.png
+text Marry Jane walks out the building and gets close to fewpeople that are clapping hands
+[{'uniq_id': '42', 'box': [1385.8338623046875, 162.63430786132812, 2048.0, 981.5729370117188]}]
+<class 'pandas.core.series.Series'>
+114207265_mdf_46_scene_0
+../../lsmdc_s1_gt_mdf/114207265_mdf_46_scene_0.png
+text Marry Jane walks out the building and gets close to fewpeople that are clapping hands
+[{'uniq_id': '42', 'box': [1342.78271484375, 178.78237915039062, 2048.0, 940.04931640625]}]
+<class 'pandas.core.series.Series'>
+114207361_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114207361_mdf_2_scene_0.png
+text A man in a coat, a hat and a bow tie stands at the entrance door of house
+[{'uniq_id': '42', 'box': [436.66064453125, 137.25872802734375, 1555.9879150390625, 943.5096435546875]}]
+<class 'pandas.core.series.Series'>
+114207361_mdf_18_scene_0
+../../lsmdc_s1_gt_mdf/114207361_mdf_18_scene_0.png
+text A man in a coat, a hat and a bow tie stands at the entrance door of house
+[{'uniq_id': '42', 'box': [557.6135864257812, 137.25872802734375, 1666.690673828125, 956.1973876953125]}]
+<class 'pandas.core.series.Series'>
+114207361_mdf_34_scene_0
+../../lsmdc_s1_gt_mdf/114207361_mdf_34_scene_0.png
+text A man in a coat, a hat and a bow tie stands at the entrance door of house
+[{'uniq_id': '42', 'box': [561.7136840820312, 134.9518585205078, 1695.391357421875, 944.6630249023438]}]
+<class 'pandas.core.series.Series'>
+114207361_mdf_39_scene_1
+../../lsmdc_s1_gt_mdf/114207361_mdf_39_scene_1.png
+text A man in a coat, a hat and a bow tie stands at the entrance door of house
+[{'uniq_id': '42', 'box': [768.7687377929688, 207.61825561523438, 1148.0279541015625, 942.356201171875]}]
+<class 'pandas.core.series.Series'>
+114207361_mdf_50_scene_1
+../../lsmdc_s1_gt_mdf/114207361_mdf_50_scene_1.png
+text A man in a coat, a hat and a bow tie stands at the entrance door of house
+[{'uniq_id': '42', 'box': [1084.4764404296875, 196.0839080810547, 1506.7867431640625, 942.356201171875]}]
+<class 'pandas.core.series.Series'>
+114207361_mdf_54_scene_1
+../../lsmdc_s1_gt_mdf/114207361_mdf_54_scene_1.png
+text A man in a coat, a hat and a bow tie stands at the entrance door of house
+[{'uniq_id': '42', 'box': [774.9188842773438, 204.15794372558594, 1178.77880859375, 942.356201171875]}]
+<class 'pandas.core.series.Series'>
+114208367_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114208367_mdf_2_scene_0.png
+text A partisan throws an axe to another man who is working with a hammer over a wooden workbench
+[{'uniq_id': '42', 'box': [1152.1280517578125, 139.5655975341797, 1760.992919921875, 1095.762939453125]}]
+<class 'pandas.core.series.Series'>
+114208367_mdf_24_scene_0
+../../lsmdc_s1_gt_mdf/114208367_mdf_24_scene_0.png
+text A partisan throws an axe to another man who is working with a hammer over a wooden workbench
+[{'uniq_id': '42', 'box': [633.4654541015625, 178.78237915039062, 1066.0260009765625, 599.7860717773438]}]
+<class 'pandas.core.series.Series'>
+114208367_mdf_46_scene_0
+../../lsmdc_s1_gt_mdf/114208367_mdf_46_scene_0.png
+text A partisan throws an axe to another man who is working with a hammer over a wooden workbench
+[{'uniq_id': '42', 'box': [0.0, 118.80377960205078, 289.05706787109375, 497.13037109375]}]
+<class 'pandas.core.series.Series'>
+114208637_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114208637_mdf_2_scene_0.png
+text A black man in plaid shirt is running within a crowd, carrying a scared girl in his arms
+[{'uniq_id': '42', 'box': [631.4154052734375, 245.6815948486328, 1590.8388671875, 944.6630249023438]}]
+<class 'pandas.core.series.Series'>
+114208637_mdf_21_scene_0
+../../lsmdc_s1_gt_mdf/114208637_mdf_21_scene_0.png
+text A black man in plaid shirt is running within a crowd, carrying a scared girl in his arms
+[{'uniq_id': '42', 'box': [1088.5765380859375, 131.49156188964844, 2037.749755859375, 942.356201171875]}]
+<class 'pandas.core.series.Series'>
+114208637_mdf_41_scene_0
+../../lsmdc_s1_gt_mdf/114208637_mdf_41_scene_0.png
+text A black man in plaid shirt is running within a crowd, carrying a scared girl in his arms
+[{'uniq_id': '42', 'box': [1135.7276611328125, 232.9938201904297, 1506.7867431640625, 944.6630249023438]}]
+<class 'pandas.core.series.Series'>
+114208637_mdf_45_scene_1
+../../lsmdc_s1_gt_mdf/114208637_mdf_45_scene_1.png
+text A black man in plaid shirt is running within a crowd, carrying a scared girl in his arms
+[{'uniq_id': '42', 'box': [248.05604553222656, 214.53884887695312, 1086.5264892578125, 935.435546875]}]
+<class 'pandas.core.series.Series'>
+114208637_mdf_61_scene_1
+../../lsmdc_s1_gt_mdf/114208637_mdf_61_scene_1.png
+text A black man in plaid shirt is running within a crowd, carrying a scared girl in his arms
+[{'uniq_id': '42', 'box': [262.4064025878906, 614.7807006835938, 742.1181030273438, 945.8164672851562]}]
+<class 'pandas.core.series.Series'>
+114208637_mdf_77_scene_1
+../../lsmdc_s1_gt_mdf/114208637_mdf_77_scene_1.png
+text A black man in plaid shirt is running within a crowd, carrying a scared girl in his arms
+[{'uniq_id': '42', 'box': [55.351348876953125, 251.4487762451172, 977.8738403320312, 944.6630249023438]}]
+<class 'pandas.core.series.Series'>
+114208637_mdf_81_scene_2
+../../lsmdc_s1_gt_mdf/114208637_mdf_81_scene_2.png
+text A black man in plaid shirt is running within a crowd, carrying a scared girl in his arms
+[{'uniq_id': '42', 'box': [159.90390014648438, 193.77703857421875, 776.9689331054688, 979.2660522460938]}]
+<class 'pandas.core.series.Series'>
+114208637_mdf_89_scene_2
+../../lsmdc_s1_gt_mdf/114208637_mdf_89_scene_2.png
+text A black man in plaid shirt is running within a crowd, carrying a scared girl in his arms
+[{'uniq_id': '42', 'box': [1295.631591796875, 366.792236328125, 1633.889892578125, 944.6630249023438]}]
+<class 'pandas.core.series.Series'>
+114208637_mdf_97_scene_2
+../../lsmdc_s1_gt_mdf/114208637_mdf_97_scene_2.png
+text A black man in plaid shirt is running within a crowd, carrying a scared girl in his arms
+[{'uniq_id': '42', 'box': [1498.5865478515625, 365.6387939453125, 1832.7447509765625, 942.356201171875]}]
+<class 'pandas.core.series.Series'>
+114208637_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114208637_mdf_2_scene_0.png
+text A black man in plaid shirt is running within a crowd, carrying a scared girl in his arms
+[{'uniq_id': '42', 'box': [631.4154052734375, 245.6815948486328, 1590.8388671875, 944.6630249023438]}]
+<class 'pandas.core.series.Series'>
+114208637_mdf_21_scene_0
+../../lsmdc_s1_gt_mdf/114208637_mdf_21_scene_0.png
+text A black man in plaid shirt is running within a crowd, carrying a scared girl in his arms
+[{'uniq_id': '42', 'box': [1088.5765380859375, 131.49156188964844, 2037.749755859375, 942.356201171875]}]
+<class 'pandas.core.series.Series'>
+114208637_mdf_41_scene_0
+../../lsmdc_s1_gt_mdf/114208637_mdf_41_scene_0.png
+text A black man in plaid shirt is running within a crowd, carrying a scared girl in his arms
+[{'uniq_id': '42', 'box': [1135.7276611328125, 232.9938201904297, 1506.7867431640625, 944.6630249023438]}]
+<class 'pandas.core.series.Series'>
+114208637_mdf_45_scene_1
+../../lsmdc_s1_gt_mdf/114208637_mdf_45_scene_1.png
+text A black man in plaid shirt is running within a crowd, carrying a scared girl in his arms
+[{'uniq_id': '42', 'box': [248.05604553222656, 214.53884887695312, 1086.5264892578125, 935.435546875]}]
+<class 'pandas.core.series.Series'>
+114208637_mdf_61_scene_1
+../../lsmdc_s1_gt_mdf/114208637_mdf_61_scene_1.png
+text A black man in plaid shirt is running within a crowd, carrying a scared girl in his arms
+[{'uniq_id': '42', 'box': [262.4064025878906, 614.7807006835938, 742.1181030273438, 945.8164672851562]}]
+<class 'pandas.core.series.Series'>
+114208637_mdf_77_scene_1
+../../lsmdc_s1_gt_mdf/114208637_mdf_77_scene_1.png
+text A black man in plaid shirt is running within a crowd, carrying a scared girl in his arms
+[{'uniq_id': '42', 'box': [55.351348876953125, 251.4487762451172, 977.8738403320312, 944.6630249023438]}]
+<class 'pandas.core.series.Series'>
+114208637_mdf_81_scene_2
+../../lsmdc_s1_gt_mdf/114208637_mdf_81_scene_2.png
+text A black man in plaid shirt is running within a crowd, carrying a scared girl in his arms
+[{'uniq_id': '42', 'box': [159.90390014648438, 193.77703857421875, 776.9689331054688, 979.2660522460938]}]
+<class 'pandas.core.series.Series'>
+114208637_mdf_89_scene_2
+../../lsmdc_s1_gt_mdf/114208637_mdf_89_scene_2.png
+text A black man in plaid shirt is running within a crowd, carrying a scared girl in his arms
+[{'uniq_id': '42', 'box': [1295.631591796875, 366.792236328125, 1633.889892578125, 944.6630249023438]}]
+<class 'pandas.core.series.Series'>
+114208637_mdf_97_scene_2
+../../lsmdc_s1_gt_mdf/114208637_mdf_97_scene_2.png
+text A black man in plaid shirt is running within a crowd, carrying a scared girl in his arms
+[{'uniq_id': '42', 'box': [1498.5865478515625, 365.6387939453125, 1832.7447509765625, 942.356201171875]}]
+<class 'pandas.core.series.Series'>
+114208777_mdf_3_scene_0
+../../lsmdc_s1_gt_mdf/114208777_mdf_3_scene_0.png
+text A group of nazi soldiers are riding on the back of a military truck
+[{'uniq_id': '42', 'box': [184.50450134277344, 253.75564575195312, 502.26226806640625, 799.3302612304688]}]
+<class 'pandas.core.series.Series'>
+114208777_mdf_29_scene_0
+../../lsmdc_s1_gt_mdf/114208777_mdf_29_scene_0.png
+text A group of nazi soldiers are riding on the back of a military truck
+[{'uniq_id': '42', 'box': [729.8178100585938, 212.23199462890625, 1117.2772216796875, 652.8441162109375]}]
+<class 'pandas.core.series.Series'>
+114208777_mdf_30_scene_0
+../../lsmdc_s1_gt_mdf/114208777_mdf_30_scene_0.png
+text A group of nazi soldiers are riding on the back of a military truck
+[{'uniq_id': '42', 'box': [744.1681518554688, 604.3997802734375, 1148.0279541015625, 1023.0966186523438]}]
+<class 'pandas.core.series.Series'>
+114208777_mdf_35_scene_1
+../../lsmdc_s1_gt_mdf/114208777_mdf_35_scene_1.png
+text A group of nazi soldiers are riding on the back of a military truck
+[{'uniq_id': '42', 'box': [0.0, 10.380912780761719, 588.3643798828125, 1100.376708984375]}]
+<class 'pandas.core.series.Series'>
+114208777_mdf_40_scene_1
+../../lsmdc_s1_gt_mdf/114208777_mdf_40_scene_1.png
+text A group of nazi soldiers are riding on the back of a military truck
+[{'uniq_id': '42', 'box': [0.0, 10.380912780761719, 569.9138793945312, 1095.762939453125]}]
+<class 'pandas.core.series.Series'>
+114208777_mdf_46_scene_1
+../../lsmdc_s1_gt_mdf/114208777_mdf_46_scene_1.png
+text A group of nazi soldiers are riding on the back of a military truck
+[{'uniq_id': '42', 'box': [0.0, 5.767173767089844, 565.8137817382812, 1095.762939453125]}]
+<class 'pandas.core.series.Series'>
+114208820_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114208820_mdf_2_scene_0.png
+text A woman sitting at a dinner table picks up a cup, and cleans the rug
+[{'uniq_id': '42', 'box': [1432.9849853515625, 230.68695068359375, 1867.5955810546875, 940.04931640625]}]
+<class 'pandas.core.series.Series'>
+114208820_mdf_47_scene_0
+../../lsmdc_s1_gt_mdf/114208820_mdf_47_scene_0.png
+text A woman sitting at a dinner table picks up a cup, and cleans the rug
+[{'uniq_id': '42', 'box': [990.1741333007812, 131.49156188964844, 1711.791748046875, 846.62109375]}]
+<class 'pandas.core.series.Series'>
+114208820_mdf_93_scene_0
+../../lsmdc_s1_gt_mdf/114208820_mdf_93_scene_0.png
+text A woman sitting at a dinner table picks up a cup, and cleans the rug
+[{'uniq_id': '42', 'box': [817.969970703125, 178.78237915039062, 1767.14306640625, 956.1973876953125]}]
+<class 'pandas.core.series.Series'>
+114206358_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114206358_mdf_2_scene_0.png
+text A man stands in a porch next to a chair and turns on the light
+[{'uniq_id': '42', 'box': [918.4224243164062, 320.65484619140625, 1068.0760498046875, 813.1715087890625]}]
+<class 'pandas.core.series.Series'>
+114206358_mdf_24_scene_0
+../../lsmdc_s1_gt_mdf/114206358_mdf_24_scene_0.png
+text A man stands in a porch next to a chair and turns on the light
+[{'uniq_id': '42', 'box': [920.4724731445312, 297.5861511230469, 1068.0760498046875, 786.6425170898438]}]
+<class 'pandas.core.series.Series'>
+114206358_mdf_46_scene_0
+../../lsmdc_s1_gt_mdf/114206358_mdf_46_scene_0.png
+text A man stands in a porch next to a chair and turns on the light
+[{'uniq_id': '42', 'box': [912.2722778320312, 328.7289123535156, 1068.0760498046875, 786.6425170898438]}]
+<class 'pandas.core.series.Series'>
+114207810_mdf_3_scene_0
+../../lsmdc_s1_gt_mdf/114207810_mdf_3_scene_0.png
+text speed boats cruising fast in a water strip next to a sandy beach and a hotel
+[{'uniq_id': '42', 'box': [1039.3753662109375, 636.6959228515625, 2048.0, 906.5997314453125]}]
+<class 'pandas.core.series.Series'>
+114207810_mdf_29_scene_0
+../../lsmdc_s1_gt_mdf/114207810_mdf_29_scene_0.png
+text speed boats cruising fast in a water strip next to a sandy beach and a hotel
+[{'uniq_id': '42', 'box': [822.070068359375, 457.9136047363281, 2048.0, 649.3837280273438]}]
+<class 'pandas.core.series.Series'>
+114207810_mdf_44_scene_0
+../../lsmdc_s1_gt_mdf/114207810_mdf_44_scene_0.png
+text speed boats cruising fast in a water strip next to a sandy beach and a hotel
+[{'uniq_id': '42', 'box': [711.3673706054688, 349.49072265625, 2048.0, 698.9814453125]}]
+<class 'pandas.core.series.Series'>
+114207781_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114207781_mdf_2_scene_0.png
+text A lady with a white cap walks leisurely between trees in a meadow
+[{'uniq_id': '42', 'box': [1133.6776123046875, 183.3961181640625, 1633.889892578125, 1152.2813720703125]}]
+<class 'pandas.core.series.Series'>
+114207781_mdf_43_scene_0
+../../lsmdc_s1_gt_mdf/114207781_mdf_43_scene_0.png
+text A lady with a white cap walks leisurely between trees in a meadow
+[{'uniq_id': '42', 'box': [1199.279296875, 191.47015380859375, 1611.33935546875, 1139.593505859375]}]
+<class 'pandas.core.series.Series'>
+114207781_mdf_85_scene_0
+../../lsmdc_s1_gt_mdf/114207781_mdf_85_scene_0.png
+text A lady with a white cap walks leisurely between trees in a meadow
+[{'uniq_id': '42', 'box': [1246.430419921875, 152.25338745117188, 1572.3883056640625, 1064.6202392578125]}]
+<class 'pandas.core.series.Series'>
+114206397_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114206397_mdf_2_scene_0.png
+text A man with a black jacket and white t-shirt is sitting in a room with a woman that wears a black dress.
+[{'uniq_id': '42', 'box': [196.8048095703125, 168.40147399902344, 934.8228149414062, 1095.762939453125]}]
+<class 'pandas.core.series.Series'>
+114206397_mdf_15_scene_0
+../../lsmdc_s1_gt_mdf/114206397_mdf_15_scene_0.png
+text A man with a black jacket and white t-shirt is sitting in a room with a woman that wears a black dress.
+[{'uniq_id': '42', 'box': [196.8048095703125, 170.70834350585938, 949.1731567382812, 1095.762939453125]}]
+<class 'pandas.core.series.Series'>
+114206397_mdf_28_scene_0
+../../lsmdc_s1_gt_mdf/114206397_mdf_28_scene_0.png
+text A man with a black jacket and white t-shirt is sitting in a room with a woman that wears a black dress.
+[{'uniq_id': '42', 'box': [196.8048095703125, 176.4755096435547, 949.1731567382812, 1102.68359375]}]
+<class 'pandas.core.series.Series'>
+114206397_mdf_32_scene_1
+../../lsmdc_s1_gt_mdf/114206397_mdf_32_scene_1.png
+text A man with a black jacket and white t-shirt is sitting in a room with a woman that wears a black dress.
+[{'uniq_id': '42', 'box': [356.7087097167969, 403.7021484375, 676.5164794921875, 1085.382080078125]}]
+<class 'pandas.core.series.Series'>
+114206397_mdf_39_scene_1
+../../lsmdc_s1_gt_mdf/114206397_mdf_39_scene_1.png
+text A man with a black jacket and white t-shirt is sitting in a room with a woman that wears a black dress.
+[{'uniq_id': '42', 'box': [309.55755615234375, 438.30517578125, 717.5175170898438, 1095.762939453125]}]
+<class 'pandas.core.series.Series'>
+114206397_mdf_46_scene_1
+../../lsmdc_s1_gt_mdf/114206397_mdf_46_scene_1.png
+text A man with a black jacket and white t-shirt is sitting in a room with a woman that wears a black dress.
+[{'uniq_id': '42', 'box': [309.55755615234375, 476.3685302734375, 723.6676635742188, 1092.302734375]}]
+<class 'pandas.core.series.Series'>
+114207839_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114207839_mdf_2_scene_0.png
+text A man in a suit and a tie talks to a blonde lady with earings and winks at her while another man with a moustache laughs in the background
+[{'uniq_id': '42', 'box': [789.269287109375, 134.9518585205078, 1387.8839111328125, 952.737060546875]}]
+<class 'pandas.core.series.Series'>
+114207839_mdf_24_scene_0
+../../lsmdc_s1_gt_mdf/114207839_mdf_24_scene_0.png
+text A man in a suit and a tie talks to a blonde lady with earings and winks at her while another man with a moustache laughs in the background
+[{'uniq_id': '42', 'box': [846.670654296875, 134.9518585205078, 1510.8868408203125, 948.1233520507812]}]
+<class 'pandas.core.series.Series'>
+114207839_mdf_46_scene_0
+../../lsmdc_s1_gt_mdf/114207839_mdf_46_scene_0.png
+text A man in a suit and a tie talks to a blonde lady with earings and winks at her while another man with a moustache laughs in the background
+[{'uniq_id': '42', 'box': [846.670654296875, 134.9518585205078, 1424.7847900390625, 956.1973876953125]}]
+<class 'pandas.core.series.Series'>
+114206632_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114206632_mdf_2_scene_0.png
+text Two men are waiting for the door to be opened, suddenly an angry man opens the door and screams.
+[{'uniq_id': '42', 'box': [61.50149917602539, 18.4549560546875, 877.42138671875, 1121.1385498046875]}]
+<class 'pandas.core.series.Series'>
+114206632_mdf_20_scene_0
+../../lsmdc_s1_gt_mdf/114206632_mdf_20_scene_0.png
+text Two men are waiting for the door to be opened, suddenly an angry man opens the door and screams.
+[{'uniq_id': '42', 'box': [30.750749588012695, 28.83586883544922, 826.170166015625, 1121.1385498046875]}]
+<class 'pandas.core.series.Series'>
+114206632_mdf_38_scene_0
+../../lsmdc_s1_gt_mdf/114206632_mdf_38_scene_0.png
+text Two men are waiting for the door to be opened, suddenly an angry man opens the door and screams.
+[{'uniq_id': '42', 'box': [36.900901794433594, 54.211429595947266, 815.919921875, 1095.762939453125]}]
+<class 'pandas.core.series.Series'>
+114206632_mdf_42_scene_1
+../../lsmdc_s1_gt_mdf/114206632_mdf_42_scene_1.png
+text Two men are waiting for the door to be opened, suddenly an angry man opens the door and screams.
+[{'uniq_id': '42', 'box': [0.0, 289.5121154785156, 96.35234832763672, 1131.51953125]}]
+<class 'pandas.core.series.Series'>
+114206632_mdf_44_scene_1
+../../lsmdc_s1_gt_mdf/114206632_mdf_44_scene_1.png
+text Two men are waiting for the door to be opened, suddenly an angry man opens the door and screams.
+[{'uniq_id': '42', 'box': [0.0, 227.22665405273438, 258.3063049316406, 1113.064453125]}]
+<class 'pandas.core.series.Series'>
+114206632_mdf_46_scene_1
+../../lsmdc_s1_gt_mdf/114206632_mdf_46_scene_1.png
+text Two men are waiting for the door to be opened, suddenly an angry man opens the door and screams.
+[{'uniq_id': '42', 'box': [0.0, 204.15794372558594, 588.3643798828125, 1092.302734375]}]
+<class 'pandas.core.series.Series'>
+114206691_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114206691_mdf_2_scene_0.png
+text Twe boys are looking up and overwhelemed.
+[{'uniq_id': '42', 'box': [510.46246337890625, 173.0152130126953, 1418.6346435546875, 944.6630249023438]}]
+<class 'pandas.core.series.Series'>
+114206691_mdf_52_scene_0
+../../lsmdc_s1_gt_mdf/114206691_mdf_52_scene_0.png
+text Twe boys are looking up and overwhelemed.
+[{'uniq_id': '42', 'box': [627.3153076171875, 365.6387939453125, 1299.731689453125, 971.1920166015625]}]
+<class 'pandas.core.series.Series'>
+114206691_mdf_103_scene_0
+../../lsmdc_s1_gt_mdf/114206691_mdf_103_scene_0.png
+text Twe boys are looking up and overwhelemed.
+[{'uniq_id': '42', 'box': [159.90390014648438, 297.5861511230469, 1197.229248046875, 971.1920166015625]}]
+<class 'pandas.core.series.Series'>
+114206789_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114206789_mdf_2_scene_0.png
+text A man is lying in bed and feeling sick, the other man helps by bringing toilet paper.
+[{'uniq_id': '42', 'box': [375.1591491699219, 4.613739013671875, 1611.33935546875, 1137.28662109375]}]
+<class 'pandas.core.series.Series'>
+114206789_mdf_57_scene_0
+../../lsmdc_s1_gt_mdf/114206789_mdf_57_scene_0.png
+text A man is lying in bed and feeling sick, the other man helps by bringing toilet paper.
+[{'uniq_id': '42', 'box': [518.6626586914062, 336.8029479980469, 1299.731689453125, 640.15625]}]
+<class 'pandas.core.series.Series'>
+114206789_mdf_112_scene_0
+../../lsmdc_s1_gt_mdf/114206789_mdf_112_scene_0.png
+text A man is lying in bed and feeling sick, the other man helps by bringing toilet paper.
+[{'uniq_id': '42', 'box': [518.6626586914062, 351.797607421875, 1295.631591796875, 640.15625]}]
+<class 'pandas.core.series.Series'>
+114206789_mdf_116_scene_1
+../../lsmdc_s1_gt_mdf/114206789_mdf_116_scene_1.png
+text A man is lying in bed and feeling sick, the other man helps by bringing toilet paper.
+[{'uniq_id': '42', 'box': [0.0, 126.87782287597656, 1744.592529296875, 1137.28662109375]}]
+<class 'pandas.core.series.Series'>
+114206789_mdf_118_scene_1
+../../lsmdc_s1_gt_mdf/114206789_mdf_118_scene_1.png
+text A man is lying in bed and feeling sick, the other man helps by bringing toilet paper.
+[{'uniq_id': '42', 'box': [0.0, 126.87782287597656, 1744.592529296875, 1137.28662109375]}]
+<class 'pandas.core.series.Series'>
+114206789_mdf_120_scene_1
+../../lsmdc_s1_gt_mdf/114206789_mdf_120_scene_1.png
+text A man is lying in bed and feeling sick, the other man helps by bringing toilet paper.
+[{'uniq_id': '42', 'box': [0.0, 126.87782287597656, 1742.54248046875, 1137.28662109375]}]
+<class 'pandas.core.series.Series'>
+114207184_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114207184_mdf_2_scene_0.png
+text A person is standing and looking up while shattered mirrors fall.
+[{'uniq_id': '42', 'box': [325.95794677734375, 141.8724822998047, 1045.5255126953125, 807.404296875]}]
+<class 'pandas.core.series.Series'>
+114207184_mdf_26_scene_0
+../../lsmdc_s1_gt_mdf/114207184_mdf_26_scene_0.png
+text A person is standing and looking up while shattered mirrors fall.
+[{'uniq_id': '42', 'box': [340.30828857421875, 137.25872802734375, 1035.2752685546875, 927.3615112304688]}]
+<class 'pandas.core.series.Series'>
+114207184_mdf_50_scene_0
+../../lsmdc_s1_gt_mdf/114207184_mdf_50_scene_0.png
+text A person is standing and looking up while shattered mirrors fall.
+[{'uniq_id': '42', 'box': [744.1681518554688, 145.33277893066406, 1141.8778076171875, 935.435546875]}]
+<class 'pandas.core.series.Series'>
+114207184_mdf_54_scene_1
+../../lsmdc_s1_gt_mdf/114207184_mdf_54_scene_1.png
+text A person is standing and looking up while shattered mirrors fall.
+[{'uniq_id': '42', 'box': [1035.2752685546875, 411.7762145996094, 1742.54248046875, 935.435546875]}]
+<class 'pandas.core.series.Series'>
+114207184_mdf_56_scene_1
+../../lsmdc_s1_gt_mdf/114207184_mdf_56_scene_1.png
+text A person is standing and looking up while shattered mirrors fall.
+[{'uniq_id': '42', 'box': [803.61962890625, 147.6396484375, 1113.1771240234375, 937.742431640625]}]
+<class 'pandas.core.series.Series'>
+114207184_mdf_59_scene_1
+../../lsmdc_s1_gt_mdf/114207184_mdf_59_scene_1.png
+text A person is standing and looking up while shattered mirrors fall.
+[{'uniq_id': '42', 'box': [1047.5755615234375, 416.3899230957031, 1689.2412109375, 943.5096435546875]}]
+<class 'pandas.core.series.Series'>
+114206816_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114206816_mdf_2_scene_0.png
+text The lady is looking at the man in the home.
+[{'uniq_id': '42', 'box': [118.90290069580078, 178.78237915039062, 768.7687377929688, 944.6630249023438]}]
+<class 'pandas.core.series.Series'>
+114206816_mdf_12_scene_0
+../../lsmdc_s1_gt_mdf/114206816_mdf_12_scene_0.png
+text The lady is looking at the man in the home.
+[{'uniq_id': '42', 'box': [116.85285186767578, 181.08924865722656, 764.6686401367188, 944.6630249023438]}]
+<class 'pandas.core.series.Series'>
+114206816_mdf_23_scene_0
+../../lsmdc_s1_gt_mdf/114206816_mdf_23_scene_0.png
+text The lady is looking at the man in the home.
+[{'uniq_id': '42', 'box': [114.80280303955078, 178.78237915039062, 764.6686401367188, 944.6630249023438]}]
+<class 'pandas.core.series.Series'>
+114206816_mdf_27_scene_1
+../../lsmdc_s1_gt_mdf/114206816_mdf_27_scene_1.png
+text The lady is looking at the man in the home.
+[{'uniq_id': '42', 'box': [0.0, 139.5655975341797, 690.8668823242188, 943.5096435546875]}]
+<class 'pandas.core.series.Series'>
+114206816_mdf_36_scene_1
+../../lsmdc_s1_gt_mdf/114206816_mdf_36_scene_1.png
+text The lady is looking at the man in the home.
+[{'uniq_id': '42', 'box': [0.0, 139.5655975341797, 623.2152099609375, 942.356201171875]}]
+<class 'pandas.core.series.Series'>
+114206816_mdf_46_scene_1
+../../lsmdc_s1_gt_mdf/114206816_mdf_46_scene_1.png
+text The lady is looking at the man in the home.
+[{'uniq_id': '42', 'box': [1424.7847900390625, 372.5594177246094, 1816.3443603515625, 948.1233520507812]}]
+<class 'pandas.core.series.Series'>
+114208338_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114208338_mdf_2_scene_0.png
+text A black person with a hat, suit, and tie looks to his sides, takes a notebook out of the pocket of his suit, reads it, and abruptly gets up from a bench in a garden
+[{'uniq_id': '42', 'box': [174.25425720214844, 279.1311950683594, 1488.3363037109375, 1133.826416015625]}]
+<class 'pandas.core.series.Series'>
+114208338_mdf_80_scene_0
+../../lsmdc_s1_gt_mdf/114208338_mdf_80_scene_0.png
+text A black person with a hat, suit, and tie looks to his sides, takes a notebook out of the pocket of his suit, reads it, and abruptly gets up from a bench in a garden
+[{'uniq_id': '42', 'box': [116.85285186767578, 0.0, 1695.391357421875, 1152.2813720703125]}]
+<class 'pandas.core.series.Series'>
+114208338_mdf_158_scene_0
+../../lsmdc_s1_gt_mdf/114208338_mdf_158_scene_0.png
+text A black person with a hat, suit, and tie looks to his sides, takes a notebook out of the pocket of his suit, reads it, and abruptly gets up from a bench in a garden
+[{'uniq_id': '42', 'box': [69.70169830322266, 4.613739013671875, 1517.0369873046875, 1137.28662109375]}]
+<class 'pandas.core.series.Series'>
+114208338_mdf_162_scene_1
+../../lsmdc_s1_gt_mdf/114208338_mdf_162_scene_1.png
+text A black person with a hat, suit, and tie looks to his sides, takes a notebook out of the pocket of his suit, reads it, and abruptly gets up from a bench in a garden
+[{'uniq_id': '42', 'box': [820.02001953125, 28.83586883544922, 1711.791748046875, 956.1973876953125]}]
+<class 'pandas.core.series.Series'>
+114208338_mdf_162_scene_1
+../../lsmdc_s1_gt_mdf/114208338_mdf_162_scene_1.png
+text A black person with a hat, suit, and tie looks to his sides, takes a notebook out of the pocket of his suit, reads it, and abruptly gets up from a bench in a garden
+[{'uniq_id': '42', 'box': [820.02001953125, 28.83586883544922, 1711.791748046875, 956.1973876953125]}]
+<class 'pandas.core.series.Series'>
+114208338_mdf_163_scene_1
+../../lsmdc_s1_gt_mdf/114208338_mdf_163_scene_1.png
+text A black person with a hat, suit, and tie looks to his sides, takes a notebook out of the pocket of his suit, reads it, and abruptly gets up from a bench in a garden
+[{'uniq_id': '42', 'box': [766.7186889648438, 12.687782287597656, 1664.640625, 960.8110961914062]}]
+<class 'pandas.core.series.Series'>
+114208576_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114208576_mdf_2_scene_0.png
+text Snow calmly falls on a big castle house with lit windows at night
+[{'uniq_id': '42', 'box': [227.55555725097656, 0.0, 1687.191162109375, 1152.2813720703125]}]
+<class 'pandas.core.series.Series'>
+114208576_mdf_254_scene_0
+../../lsmdc_s1_gt_mdf/114208576_mdf_254_scene_0.png
+text Snow calmly falls on a big castle house with lit windows at night
+[{'uniq_id': '42', 'box': [432.560546875, 4.613739013671875, 1371.4835205078125, 875.4569091796875]}]
+<class 'pandas.core.series.Series'>
+114208576_mdf_506_scene_0
+../../lsmdc_s1_gt_mdf/114208576_mdf_506_scene_0.png
+text Snow calmly falls on a big castle house with lit windows at night
+[{'uniq_id': '42', 'box': [0.0, 0.0, 2048.0, 1152.2813720703125]}]
+<class 'pandas.core.series.Series'>
+114206264_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114206264_mdf_2_scene_0.png
+text A person runs away from the house through the terrace, and a garbage can appears in the scene and makes noise.
+[{'uniq_id': '42', 'box': [1416.5845947265625, 430.23114013671875, 1646.190185546875, 927.3615112304688]}]
+<class 'pandas.core.series.Series'>
+114206264_mdf_57_scene_0
+../../lsmdc_s1_gt_mdf/114206264_mdf_57_scene_0.png
+text A person runs away from the house through the terrace, and a garbage can appears in the scene and makes noise.
+[{'uniq_id': '42', 'box': [805.669677734375, 221.45947265625, 1127.5274658203125, 1085.382080078125]}]
+<class 'pandas.core.series.Series'>
+114206264_mdf_113_scene_0
+../../lsmdc_s1_gt_mdf/114206264_mdf_113_scene_0.png
+text A person runs away from the house through the terrace, and a garbage can appears in the scene and makes noise.
+[{'uniq_id': '42', 'box': [754.4183959960938, 658.6112670898438, 988.1240844726562, 769.3410034179688]}]
+<class 'pandas.core.series.Series'>
+114207441_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114207441_mdf_2_scene_0.png
+text Malfoy goes down the stairs and blames Harry Potter in the bookstore in front of other kids
+[{'uniq_id': '42', 'box': [30.750749588012695, 276.8243408203125, 375.1591491699219, 937.742431640625]}]
+<class 'pandas.core.series.Series'>
+114207441_mdf_38_scene_0
+../../lsmdc_s1_gt_mdf/114207441_mdf_38_scene_0.png
+text Malfoy goes down the stairs and blames Harry Potter in the bookstore in front of other kids
+[{'uniq_id': '42', 'box': [1143.9278564453125, 339.1098327636719, 1588.788818359375, 943.5096435546875]}]
+<class 'pandas.core.series.Series'>
+114207441_mdf_75_scene_0
+../../lsmdc_s1_gt_mdf/114207441_mdf_75_scene_0.png
+text Malfoy goes down the stairs and blames Harry Potter in the bookstore in front of other kids
+[{'uniq_id': '42', 'box': [1432.9849853515625, 204.15794372558594, 1812.2442626953125, 937.742431640625]}]
+<class 'pandas.core.series.Series'>
+114207499_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114207499_mdf_2_scene_0.png
+text A waiter serves a cup of coffee to a tense man in a white suit and orange tie, who sits next to a lady who holds a cup of coffee
+[{'uniq_id': '42', 'box': [2.0500500202178955, 160.32742309570312, 725.7177124023438, 942.356201171875]}]
+<class 'pandas.core.series.Series'>
+114207499_mdf_24_scene_0
+../../lsmdc_s1_gt_mdf/114207499_mdf_24_scene_0.png
+text A waiter serves a cup of coffee to a tense man in a white suit and orange tie, who sits next to a lady who holds a cup of coffee
+[{'uniq_id': '42', 'box': [0.0, 149.94651794433594, 740.0680541992188, 944.6630249023438]}]
+<class 'pandas.core.series.Series'>
+114207499_mdf_46_scene_0
+../../lsmdc_s1_gt_mdf/114207499_mdf_46_scene_0.png
+text A waiter serves a cup of coffee to a tense man in a white suit and orange tie, who sits next to a lady who holds a cup of coffee
+[{'uniq_id': '42', 'box': [0.0, 137.25872802734375, 729.8178100585938, 944.6630249023438]}]
+<class 'pandas.core.series.Series'>
+114206952_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114206952_mdf_2_scene_0.png
+text Dressed up men and women getting off a mid-size steamboat on a dock
+[{'uniq_id': '42', 'box': [8.200200080871582, 419.8502502441406, 373.1091003417969, 981.5729370117188]}]
+<class 'pandas.core.series.Series'>
+114206952_mdf_7_scene_0
+../../lsmdc_s1_gt_mdf/114206952_mdf_7_scene_0.png
+text Dressed up men and women getting off a mid-size steamboat on a dock
+[{'uniq_id': '42', 'box': [0.0, 432.53802490234375, 299.30731201171875, 927.3615112304688]}]
+<class 'pandas.core.series.Series'>
+114206952_mdf_13_scene_0
+../../lsmdc_s1_gt_mdf/114206952_mdf_13_scene_0.png
+text Dressed up men and women getting off a mid-size steamboat on a dock
+[{'uniq_id': '42', 'box': [971.7236938476562, 450.99298095703125, 1334.58251953125, 942.356201171875]}]
+<class 'pandas.core.series.Series'>
+114206952_mdf_17_scene_1
+../../lsmdc_s1_gt_mdf/114206952_mdf_17_scene_1.png
+text Dressed up men and women getting off a mid-size steamboat on a dock
+[{'uniq_id': '42', 'box': [1078.3262939453125, 453.29986572265625, 1332.532470703125, 942.356201171875]}]
+<class 'pandas.core.series.Series'>
+114206952_mdf_32_scene_1
+../../lsmdc_s1_gt_mdf/114206952_mdf_32_scene_1.png
+text Dressed up men and women getting off a mid-size steamboat on a dock
+[{'uniq_id': '42', 'box': [346.4584655761719, 382.9403076171875, 645.7657470703125, 949.2767944335938]}]
+<class 'pandas.core.series.Series'>
+114206952_mdf_47_scene_1
+../../lsmdc_s1_gt_mdf/114206952_mdf_47_scene_1.png
+text Dressed up men and women getting off a mid-size steamboat on a dock
+[{'uniq_id': '42', 'box': [516.6126098632812, 366.792236328125, 828.22021484375, 948.1233520507812]}]
+<class 'pandas.core.series.Series'>
+114206952_mdf_51_scene_2
+../../lsmdc_s1_gt_mdf/114206952_mdf_51_scene_2.png
+text Dressed up men and women getting off a mid-size steamboat on a dock
+[{'uniq_id': '42', 'box': [289.05706787109375, 588.251708984375, 848.720703125, 728.9707641601562]}]
+<class 'pandas.core.series.Series'>
+114206952_mdf_73_scene_2
+../../lsmdc_s1_gt_mdf/114206952_mdf_73_scene_2.png
+text Dressed up men and women getting off a mid-size steamboat on a dock
+[{'uniq_id': '42', 'box': [90.20220184326172, 137.25872802734375, 1057.8258056640625, 965.4248657226562]}]
+<class 'pandas.core.series.Series'>
+114206952_mdf_95_scene_2
+../../lsmdc_s1_gt_mdf/114206952_mdf_95_scene_2.png
+text Dressed up men and women getting off a mid-size steamboat on a dock
+[{'uniq_id': '42', 'box': [92.25225067138672, 118.80377960205078, 1035.2752685546875, 971.1920166015625]}]
+<class 'pandas.core.series.Series'>
+114206952_mdf_99_scene_3
+../../lsmdc_s1_gt_mdf/114206952_mdf_99_scene_3.png
+text Dressed up men and women getting off a mid-size steamboat on a dock
+[{'uniq_id': '42', 'box': [106.60260009765625, 199.54421997070312, 385.4093933105469, 943.5096435546875]}]
+<class 'pandas.core.series.Series'>
+114206952_mdf_106_scene_3
+../../lsmdc_s1_gt_mdf/114206952_mdf_106_scene_3.png
+text Dressed up men and women getting off a mid-size steamboat on a dock
+[{'uniq_id': '42', 'box': [67.65164947509766, 191.47015380859375, 340.30828857421875, 944.6630249023438]}]
+<class 'pandas.core.series.Series'>
+114206952_mdf_113_scene_3
+../../lsmdc_s1_gt_mdf/114206952_mdf_113_scene_3.png
+text Dressed up men and women getting off a mid-size steamboat on a dock
+[{'uniq_id': '42', 'box': [20.500499725341797, 181.08924865722656, 307.50750732421875, 942.356201171875]}]
+<class 'pandas.core.series.Series'>
+114206892_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114206892_mdf_2_scene_0.png
+text A person in a jacket in a park
+[{'uniq_id': '42', 'box': [186.55455017089844, 137.25872802734375, 1734.34228515625, 971.1920166015625]}]
+<class 'pandas.core.series.Series'>
+114206892_mdf_39_scene_0
+../../lsmdc_s1_gt_mdf/114206892_mdf_39_scene_0.png
+text A person in a jacket in a park
+[{'uniq_id': '42', 'box': [137.3533477783203, 137.25872802734375, 1795.8438720703125, 956.1973876953125]}]
+<class 'pandas.core.series.Series'>
+114206892_mdf_76_scene_0
+../../lsmdc_s1_gt_mdf/114206892_mdf_76_scene_0.png
+text A person in a jacket in a park
+[{'uniq_id': '42', 'box': [86.10210418701172, 134.9518585205078, 1836.8448486328125, 956.1973876953125]}]
+<class 'pandas.core.series.Series'>
+114207205_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114207205_mdf_2_scene_0.png
+text A man and a woman are walking on a street
+[{'uniq_id': '42', 'box': [813.869873046875, 542.1143188476562, 1014.7747802734375, 846.62109375]}]
+<class 'pandas.core.series.Series'>
+114207205_mdf_24_scene_0
+../../lsmdc_s1_gt_mdf/114207205_mdf_24_scene_0.png
+text A man and a woman are walking on a street
+[{'uniq_id': '42', 'box': [805.669677734375, 485.59600830078125, 1055.7757568359375, 833.9332885742188]}]
+<class 'pandas.core.series.Series'>
+114207205_mdf_46_scene_0
+../../lsmdc_s1_gt_mdf/114207205_mdf_46_scene_0.png
+text A man and a woman are walking on a street
+[{'uniq_id': '42', 'box': [1113.1771240234375, 442.9189453125, 1320.232177734375, 846.62109375]}]
+<class 'pandas.core.series.Series'>
+114207398_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114207398_mdf_2_scene_0.png
+text In a Nazi ghetto an old man surrounded by children and a jewish croud, make joke by pointing a stick at two Nazi soldiers, as if it was a gun
+[{'uniq_id': '42', 'box': [414.110107421875, 124.5709457397461, 662.1661376953125, 1089.995849609375]}]
+<class 'pandas.core.series.Series'>
+114207398_mdf_39_scene_0
+../../lsmdc_s1_gt_mdf/114207398_mdf_39_scene_0.png
+text In a Nazi ghetto an old man surrounded by children and a jewish croud, make joke by pointing a stick at two Nazi soldiers, as if it was a gun
+[{'uniq_id': '42', 'box': [1178.77880859375, 251.4487762451172, 1605.189208984375, 1069.2340087890625]}]
+<class 'pandas.core.series.Series'>
+114207398_mdf_77_scene_0
+../../lsmdc_s1_gt_mdf/114207398_mdf_77_scene_0.png
+text In a Nazi ghetto an old man surrounded by children and a jewish croud, make joke by pointing a stick at two Nazi soldiers, as if it was a gun
+[{'uniq_id': '42', 'box': [1053.7257080078125, 266.44342041015625, 1412.4844970703125, 1064.6202392578125]}]
+<class 'pandas.core.series.Series'>
+114206597_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114206597_mdf_2_scene_0.png
+text Two men wearing sun-glasses and standing on a hill looking at the sea.
+[{'uniq_id': '42', 'box': [375.1591491699219, 62.28547286987305, 1455.5355224609375, 1092.302734375]}]
+<class 'pandas.core.series.Series'>
+114206597_mdf_42_scene_0
+../../lsmdc_s1_gt_mdf/114206597_mdf_42_scene_0.png
+text Two men wearing sun-glasses and standing on a hill looking at the sea.
+[{'uniq_id': '42', 'box': [227.55555725097656, 106.11599731445312, 1375.5836181640625, 1102.68359375]}]
+<class 'pandas.core.series.Series'>
+114206597_mdf_83_scene_0
+../../lsmdc_s1_gt_mdf/114206597_mdf_83_scene_0.png
+text Two men wearing sun-glasses and standing on a hill looking at the sea.
+[{'uniq_id': '42', 'box': [227.55555725097656, 189.1632843017578, 1334.58251953125, 1110.757568359375]}]
+<class 'pandas.core.series.Series'>
+114206597_mdf_88_scene_1
+../../lsmdc_s1_gt_mdf/114206597_mdf_88_scene_1.png
+text Two men wearing sun-glasses and standing on a hill looking at the sea.
+[{'uniq_id': '42', 'box': [1033.2252197265625, 281.4380798339844, 1092.6766357421875, 328.7289123535156]}]
+<class 'pandas.core.series.Series'>
+114206597_mdf_91_scene_1
+../../lsmdc_s1_gt_mdf/114206597_mdf_91_scene_1.png
+text Two men wearing sun-glasses and standing on a hill looking at the sea.
+[{'uniq_id': '42', 'box': [1033.2252197265625, 281.4380798339844, 1092.6766357421875, 328.7289123535156]}]
+<class 'pandas.core.series.Series'>
+114206597_mdf_88_scene_1
+../../lsmdc_s1_gt_mdf/114206597_mdf_88_scene_1.png
+text Two men wearing sun-glasses and standing on a hill looking at the sea.
+[{'uniq_id': '42', 'box': [1033.2252197265625, 281.4380798339844, 1092.6766357421875, 328.7289123535156]}]
+<class 'pandas.core.series.Series'>
+114206952_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114206952_mdf_2_scene_0.png
+text Dressed up men and women getting off a ship
+[{'uniq_id': '42', 'box': [8.200200080871582, 419.8502502441406, 373.1091003417969, 981.5729370117188]}]
+<class 'pandas.core.series.Series'>
+114206952_mdf_7_scene_0
+../../lsmdc_s1_gt_mdf/114206952_mdf_7_scene_0.png
+text Dressed up men and women getting off a ship
+[{'uniq_id': '42', 'box': [0.0, 432.53802490234375, 299.30731201171875, 927.3615112304688]}]
+<class 'pandas.core.series.Series'>
+114206952_mdf_13_scene_0
+../../lsmdc_s1_gt_mdf/114206952_mdf_13_scene_0.png
+text Dressed up men and women getting off a ship
+[{'uniq_id': '42', 'box': [0.0, 411.7762145996094, 231.65565490722656, 865.0760498046875]}]
+<class 'pandas.core.series.Series'>
+114206952_mdf_17_scene_1
+../../lsmdc_s1_gt_mdf/114206952_mdf_17_scene_1.png
+text Dressed up men and women getting off a ship
+[{'uniq_id': '42', 'box': [1078.3262939453125, 453.29986572265625, 1332.532470703125, 942.356201171875]}]
+<class 'pandas.core.series.Series'>
+114206952_mdf_32_scene_1
+../../lsmdc_s1_gt_mdf/114206952_mdf_32_scene_1.png
+text Dressed up men and women getting off a ship
+[{'uniq_id': '42', 'box': [346.4584655761719, 382.9403076171875, 645.7657470703125, 949.2767944335938]}]
+<class 'pandas.core.series.Series'>
+114206952_mdf_47_scene_1
+../../lsmdc_s1_gt_mdf/114206952_mdf_47_scene_1.png
+text Dressed up men and women getting off a ship
+[{'uniq_id': '42', 'box': [512.5125122070312, 365.6387939453125, 828.22021484375, 948.1233520507812]}]
+<class 'pandas.core.series.Series'>
+114206952_mdf_51_scene_2
+../../lsmdc_s1_gt_mdf/114206952_mdf_51_scene_2.png
+text Dressed up men and women getting off a ship
+[{'uniq_id': '42', 'box': [332.10809326171875, 592.865478515625, 848.720703125, 728.9707641601562]}]
+<class 'pandas.core.series.Series'>
+114206952_mdf_73_scene_2
+../../lsmdc_s1_gt_mdf/114206952_mdf_73_scene_2.png
+text Dressed up men and women getting off a ship
+[{'uniq_id': '42', 'box': [291.10711669921875, 592.865478515625, 809.769775390625, 728.9707641601562]}]
+<class 'pandas.core.series.Series'>
+114206952_mdf_95_scene_2
+../../lsmdc_s1_gt_mdf/114206952_mdf_95_scene_2.png
+text Dressed up men and women getting off a ship
+[{'uniq_id': '42', 'box': [92.25225067138672, 118.80377960205078, 1035.2752685546875, 971.1920166015625]}]
+<class 'pandas.core.series.Series'>
+114206952_mdf_99_scene_3
+../../lsmdc_s1_gt_mdf/114206952_mdf_99_scene_3.png
+text Dressed up men and women getting off a ship
+[{'uniq_id': '42', 'box': [106.60260009765625, 199.54421997070312, 385.4093933105469, 943.5096435546875]}]
+<class 'pandas.core.series.Series'>
+114206952_mdf_106_scene_3
+../../lsmdc_s1_gt_mdf/114206952_mdf_106_scene_3.png
+text Dressed up men and women getting off a ship
+[{'uniq_id': '42', 'box': [67.65164947509766, 191.47015380859375, 340.30828857421875, 944.6630249023438]}]
+<class 'pandas.core.series.Series'>
+114206952_mdf_113_scene_3
+../../lsmdc_s1_gt_mdf/114206952_mdf_113_scene_3.png
+text Dressed up men and women getting off a ship
+[{'uniq_id': '42', 'box': [20.500499725341797, 181.08924865722656, 307.50750732421875, 942.356201171875]}]
+<class 'pandas.core.series.Series'>
+114207908_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114207908_mdf_2_scene_0.png
+text A blue-eyed bearded warrior with a metal helmet and shield puts his arm on a blonde lady with three armed soldiers in the background
+[{'uniq_id': '42', 'box': [1443.2352294921875, 253.75564575195312, 1799.9439697265625, 931.9752807617188]}]
+<class 'pandas.core.series.Series'>
+114207908_mdf_57_scene_0
+../../lsmdc_s1_gt_mdf/114207908_mdf_57_scene_0.png
+text A blue-eyed bearded warrior with a metal helmet and shield puts his arm on a blonde lady with three armed soldiers in the background
+[{'uniq_id': '42', 'box': [1406.3343505859375, 253.75564575195312, 1789.6937255859375, 956.1973876953125]}]
+<class 'pandas.core.series.Series'>
+114207908_mdf_112_scene_0
+../../lsmdc_s1_gt_mdf/114207908_mdf_112_scene_0.png
+text A blue-eyed bearded warrior with a metal helmet and shield puts his arm on a blonde lady with three armed soldiers in the background
+[{'uniq_id': '42', 'box': [1391.9840087890625, 276.8243408203125, 1787.6436767578125, 956.1973876953125]}]
+<class 'pandas.core.series.Series'>
+114207908_mdf_116_scene_1
+../../lsmdc_s1_gt_mdf/114207908_mdf_116_scene_1.png
+text A blue-eyed bearded warrior with a metal helmet and shield puts his arm on a blonde lady with three armed soldiers in the background
+[{'uniq_id': '42', 'box': [1039.3753662109375, 137.25872802734375, 2048.0, 943.5096435546875]}]
+<class 'pandas.core.series.Series'>
+114207908_mdf_122_scene_1
+../../lsmdc_s1_gt_mdf/114207908_mdf_122_scene_1.png
+text A blue-eyed bearded warrior with a metal helmet and shield puts his arm on a blonde lady with three armed soldiers in the background
+[{'uniq_id': '42', 'box': [1176.728759765625, 162.63430786132812, 1381.7337646484375, 711.6692504882812]}]
+<class 'pandas.core.series.Series'>
+114207908_mdf_129_scene_1
+../../lsmdc_s1_gt_mdf/114207908_mdf_129_scene_1.png
+text A blue-eyed bearded warrior with a metal helmet and shield puts his arm on a blonde lady with three armed soldiers in the background
+[{'uniq_id': '42', 'box': [1160.328369140625, 183.3961181640625, 1463.7357177734375, 937.742431640625]}]
+<class 'pandas.core.series.Series'>
+114207324_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114207324_mdf_2_scene_0.png
+text A nobleman looks up at the entrance to a room full of people, next to a window with a vase of flowers in a renaissance scene
+[{'uniq_id': '42', 'box': [506.36236572265625, 199.54421997070312, 934.8228149414062, 942.356201171875]}]
+<class 'pandas.core.series.Series'>
+114207324_mdf_58_scene_0
+../../lsmdc_s1_gt_mdf/114207324_mdf_58_scene_0.png
+text A nobleman looks up at the entrance to a room full of people, next to a window with a vase of flowers in a renaissance scene
+[{'uniq_id': '42', 'box': [571.9639282226562, 268.75030517578125, 988.1240844726562, 942.356201171875]}]
+<class 'pandas.core.series.Series'>
+114207324_mdf_114_scene_0
+../../lsmdc_s1_gt_mdf/114207324_mdf_114_scene_0.png
+text A nobleman looks up at the entrance to a room full of people, next to a window with a vase of flowers in a renaissance scene
+[{'uniq_id': '42', 'box': [647.8157958984375, 328.7289123535156, 899.9719848632812, 944.6630249023438]}]
+<class 'pandas.core.series.Series'>
+114208149_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114208149_mdf_2_scene_0.png
+text A US Coastal Guard boat cruises fast, with staff wearing life-jackets underneath a bridge with high-rises in the background
+[{'uniq_id': '42', 'box': [820.02001953125, 701.288330078125, 1541.6375732421875, 833.9332885742188]}]
+<class 'pandas.core.series.Series'>
+114208149_mdf_19_scene_0
+../../lsmdc_s1_gt_mdf/114208149_mdf_19_scene_0.png
+text A US Coastal Guard boat cruises fast, with staff wearing life-jackets underneath a bridge with high-rises in the background
+[{'uniq_id': '42', 'box': [723.6676635742188, 111.88317108154297, 1609.289306640625, 758.9600219726562]}]
+<class 'pandas.core.series.Series'>
+114208149_mdf_36_scene_0
+../../lsmdc_s1_gt_mdf/114208149_mdf_36_scene_0.png
+text A US Coastal Guard boat cruises fast, with staff wearing life-jackets underneath a bridge with high-rises in the background
+[{'uniq_id': '42', 'box': [746.2182006835938, 652.8441162109375, 1601.089111328125, 782.0287475585938]}]
+<class 'pandas.core.series.Series'>
+114208149_mdf_40_scene_1
+../../lsmdc_s1_gt_mdf/114208149_mdf_40_scene_1.png
+text A US Coastal Guard boat cruises fast, with staff wearing life-jackets underneath a bridge with high-rises in the background
+[{'uniq_id': '42', 'box': [670.3663330078125, 256.0625305175781, 1066.0260009765625, 1098.06982421875]}]
+<class 'pandas.core.series.Series'>
+114208149_mdf_54_scene_1
+../../lsmdc_s1_gt_mdf/114208149_mdf_54_scene_1.png
+text A US Coastal Guard boat cruises fast, with staff wearing life-jackets underneath a bridge with high-rises in the background
+[{'uniq_id': '42', 'box': [1607.2392578125, 652.8441162109375, 2048.0, 790.1028442382812]}]
+<class 'pandas.core.series.Series'>
+114208149_mdf_68_scene_1
+../../lsmdc_s1_gt_mdf/114208149_mdf_68_scene_1.png
+text A US Coastal Guard boat cruises fast, with staff wearing life-jackets underneath a bridge with high-rises in the background
+[{'uniq_id': '42', 'box': [596.5645751953125, 322.9617004394531, 961.4734497070312, 1095.762939453125]}]
+<class 'pandas.core.series.Series'>
+114208149_mdf_84_scene_2
+../../lsmdc_s1_gt_mdf/114208149_mdf_84_scene_2.png
+text A US Coastal Guard boat cruises fast, with staff wearing life-jackets underneath a bridge with high-rises in the background
+[{'uniq_id': '42', 'box': [0.0, 497.13037109375, 311.60760498046875, 971.1920166015625]}]
+<class 'pandas.core.series.Series'>
+114208149_mdf_116_scene_2
+../../lsmdc_s1_gt_mdf/114208149_mdf_116_scene_2.png
+text A US Coastal Guard boat cruises fast, with staff wearing life-jackets underneath a bridge with high-rises in the background
+[{'uniq_id': '42', 'box': [768.7687377929688, 39.21677780151367, 1207.4794921875, 688.6005249023438]}]
+<class 'pandas.core.series.Series'>
+114208149_mdf_115_scene_2
+../../lsmdc_s1_gt_mdf/114208149_mdf_115_scene_2.png
+text A US Coastal Guard boat cruises fast, with staff wearing life-jackets underneath a bridge with high-rises in the background
+[{'uniq_id': '42', 'box': [801.569580078125, 8.074043273925781, 1264.880859375, 652.8441162109375]}]
+<class 'pandas.core.series.Series'>
+114208149_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114208149_mdf_2_scene_0.png
+text Two policemen with hats and orange life-jackets on board of a motorboat, which speeds under a tall bridge with  New York City at the background
+[{'uniq_id': '42', 'box': [1406.3343505859375, 758.9600219726562, 1611.33935546875, 865.0760498046875]}]
+<class 'pandas.core.series.Series'>
+114208149_mdf_19_scene_0
+../../lsmdc_s1_gt_mdf/114208149_mdf_19_scene_0.png
+text Two policemen with hats and orange life-jackets on board of a motorboat, which speeds under a tall bridge with  New York City at the background
+[{'uniq_id': '42', 'box': [703.1671752929688, 673.6058959960938, 1609.289306640625, 802.7905883789062]}]
+<class 'pandas.core.series.Series'>
+114208149_mdf_36_scene_0
+../../lsmdc_s1_gt_mdf/114208149_mdf_36_scene_0.png
+text Two policemen with hats and orange life-jackets on board of a motorboat, which speeds under a tall bridge with  New York City at the background
+[{'uniq_id': '42', 'box': [740.0680541992188, 652.8441162109375, 1601.089111328125, 782.0287475585938]}]
+<class 'pandas.core.series.Series'>
+114208149_mdf_40_scene_1
+../../lsmdc_s1_gt_mdf/114208149_mdf_40_scene_1.png
+text Two policemen with hats and orange life-jackets on board of a motorboat, which speeds under a tall bridge with  New York City at the background
+[{'uniq_id': '42', 'box': [668.3162841796875, 256.0625305175781, 1066.0260009765625, 1110.757568359375]}]
+<class 'pandas.core.series.Series'>
+114208149_mdf_54_scene_1
+../../lsmdc_s1_gt_mdf/114208149_mdf_54_scene_1.png
+text Two policemen with hats and orange life-jackets on board of a motorboat, which speeds under a tall bridge with  New York City at the background
+[{'uniq_id': '42', 'box': [621.1651611328125, 376.01971435546875, 1020.9249267578125, 1121.1385498046875]}]
+<class 'pandas.core.series.Series'>
+114208149_mdf_68_scene_1
+../../lsmdc_s1_gt_mdf/114208149_mdf_68_scene_1.png
+text Two policemen with hats and orange life-jackets on board of a motorboat, which speeds under a tall bridge with  New York City at the background
+[{'uniq_id': '42', 'box': [598.6146240234375, 325.26861572265625, 961.4734497070312, 1095.762939453125]}]
+<class 'pandas.core.series.Series'>
+114208149_mdf_84_scene_2
+../../lsmdc_s1_gt_mdf/114208149_mdf_84_scene_2.png
+text Two policemen with hats and orange life-jackets on board of a motorboat, which speeds under a tall bridge with  New York City at the background
+[{'uniq_id': '42', 'box': [0.0, 497.13037109375, 311.60760498046875, 971.1920166015625]}]
+<class 'pandas.core.series.Series'>
+114208149_mdf_116_scene_2
+../../lsmdc_s1_gt_mdf/114208149_mdf_116_scene_2.png
+text Two policemen with hats and orange life-jackets on board of a motorboat, which speeds under a tall bridge with  New York City at the background
+[{'uniq_id': '42', 'box': [768.7687377929688, 39.21677780151367, 1186.97900390625, 711.6692504882812]}]
+<class 'pandas.core.series.Series'>
+114208149_mdf_115_scene_2
+../../lsmdc_s1_gt_mdf/114208149_mdf_115_scene_2.png
+text Two policemen with hats and orange life-jackets on board of a motorboat, which speeds under a tall bridge with  New York City at the background
+[{'uniq_id': '42', 'box': [805.669677734375, 4.613739013671875, 1275.131103515625, 688.6005249023438]}]
+<class 'pandas.core.series.Series'>
+114208149_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114208149_mdf_2_scene_0.png
+text A red and white motorboat speeds with New York City buildings at the background
+[{'uniq_id': '42', 'box': [1406.3343505859375, 771.6478881835938, 1611.33935546875, 865.0760498046875]}]
+<class 'pandas.core.series.Series'>
+114208149_mdf_19_scene_0
+../../lsmdc_s1_gt_mdf/114208149_mdf_19_scene_0.png
+text A red and white motorboat speeds with New York City buildings at the background
+[{'uniq_id': '42', 'box': [1426.8348388671875, 740.5050659179688, 2048.0, 838.5470581054688]}]
+<class 'pandas.core.series.Series'>
+114208149_mdf_36_scene_0
+../../lsmdc_s1_gt_mdf/114208149_mdf_36_scene_0.png
+text A red and white motorboat speeds with New York City buildings at the background
+[{'uniq_id': '42', 'box': [1426.8348388671875, 735.891357421875, 1631.83984375, 838.5470581054688]}]
+<class 'pandas.core.series.Series'>
+114208149_mdf_40_scene_1
+../../lsmdc_s1_gt_mdf/114208149_mdf_40_scene_1.png
+text A red and white motorboat speeds with New York City buildings at the background
+[{'uniq_id': '42', 'box': [1666.690673828125, 652.8441162109375, 2048.0, 790.1028442382812]}]
+<class 'pandas.core.series.Series'>
+114208149_mdf_54_scene_1
+../../lsmdc_s1_gt_mdf/114208149_mdf_54_scene_1.png
+text A red and white motorboat speeds with New York City buildings at the background
+[{'uniq_id': '42', 'box': [1617.489501953125, 655.1509399414062, 2048.0, 790.1028442382812]}]
+<class 'pandas.core.series.Series'>
+114208149_mdf_68_scene_1
+../../lsmdc_s1_gt_mdf/114208149_mdf_68_scene_1.png
+text A red and white motorboat speeds with New York City buildings at the background
+[{'uniq_id': '42', 'box': [1631.83984375, 584.7914428710938, 2048.0, 703.59521484375]}]
+<class 'pandas.core.series.Series'>
+114208149_mdf_84_scene_2
+../../lsmdc_s1_gt_mdf/114208149_mdf_84_scene_2.png
+text A red and white motorboat speeds with New York City buildings at the background
+[{'uniq_id': '42', 'box': [0.0, 137.25872802734375, 2048.0, 1064.6202392578125]}]
+<class 'pandas.core.series.Series'>
+114208149_mdf_116_scene_2
+../../lsmdc_s1_gt_mdf/114208149_mdf_116_scene_2.png
+text A red and white motorboat speeds with New York City buildings at the background
+[{'uniq_id': '42', 'box': [768.7687377929688, 39.21677780151367, 1207.4794921875, 652.8441162109375]}]
+<class 'pandas.core.series.Series'>
+114208149_mdf_115_scene_2
+../../lsmdc_s1_gt_mdf/114208149_mdf_115_scene_2.png
+text A red and white motorboat speeds with New York City buildings at the background
+[{'uniq_id': '42', 'box': [799.51953125, 8.074043273925781, 1264.880859375, 652.8441162109375]}]
+<class 'pandas.core.series.Series'>
+114208196_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114208196_mdf_2_scene_0.png
+text A plump red-headed lady with a blue robe and a pink towel on her shoulder turns away
+[{'uniq_id': '42', 'box': [0.0, 131.49156188964844, 621.1651611328125, 696.674560546875]}]
+<class 'pandas.core.series.Series'>
+114208196_mdf_22_scene_0
+../../lsmdc_s1_gt_mdf/114208196_mdf_22_scene_0.png
+text A plump red-headed lady with a blue robe and a pink towel on her shoulder turns away
+[{'uniq_id': '42', 'box': [785.1691284179688, 302.19989013671875, 1767.14306640625, 956.1973876953125]}]
+<class 'pandas.core.series.Series'>
+114208196_mdf_42_scene_0
+../../lsmdc_s1_gt_mdf/114208196_mdf_42_scene_0.png
+text A plump red-headed lady with a blue robe and a pink towel on her shoulder turns away
+[{'uniq_id': '42', 'box': [828.22021484375, 317.1945495605469, 1822.4945068359375, 956.1973876953125]}]
+<class 'pandas.core.series.Series'>
+114208196_mdf_46_scene_1
+../../lsmdc_s1_gt_mdf/114208196_mdf_46_scene_1.png
+text A plump red-headed lady with a blue robe and a pink towel on her shoulder turns away
+[{'uniq_id': '42', 'box': [670.3663330078125, 162.63430786132812, 1603.13916015625, 952.737060546875]}]
+<class 'pandas.core.series.Series'>
+114208196_mdf_72_scene_1
+../../lsmdc_s1_gt_mdf/114208196_mdf_72_scene_1.png
+text A plump red-headed lady with a blue robe and a pink towel on her shoulder turns away
+[{'uniq_id': '42', 'box': [744.1681518554688, 137.25872802734375, 1566.2381591796875, 952.737060546875]}]
+<class 'pandas.core.series.Series'>
+114208196_mdf_98_scene_1
+../../lsmdc_s1_gt_mdf/114208196_mdf_98_scene_1.png
+text A plump red-headed lady with a blue robe and a pink towel on her shoulder turns away
+[{'uniq_id': '42', 'box': [0.0, 230.68695068359375, 336.20819091796875, 948.1233520507812]}]
+<class 'pandas.core.series.Series'>
+114208196_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114208196_mdf_2_scene_0.png
+text Two hands with long nails hold a pack of credit cards
+[{'uniq_id': '42', 'box': [0.0, 131.49156188964844, 623.2152099609375, 709.3623657226562]}]
+<class 'pandas.core.series.Series'>
+114208196_mdf_22_scene_0
+../../lsmdc_s1_gt_mdf/114208196_mdf_22_scene_0.png
+text Two hands with long nails hold a pack of credit cards
+[{'uniq_id': '42', 'box': [0.0, 131.49156188964844, 951.2232055664062, 735.891357421875]}]
+<class 'pandas.core.series.Series'>
+114208196_mdf_42_scene_0
+../../lsmdc_s1_gt_mdf/114208196_mdf_42_scene_0.png
+text Two hands with long nails hold a pack of credit cards
+[{'uniq_id': '42', 'box': [0.0, 133.79843139648438, 623.2152099609375, 735.891357421875]}]
+<class 'pandas.core.series.Series'>
+114208196_mdf_46_scene_1
+../../lsmdc_s1_gt_mdf/114208196_mdf_46_scene_1.png
+text Two hands with long nails hold a pack of credit cards
+[{'uniq_id': '42', 'box': [670.3663330078125, 162.63430786132812, 1605.189208984375, 952.737060546875]}]
+<class 'pandas.core.series.Series'>
+114208196_mdf_72_scene_1
+../../lsmdc_s1_gt_mdf/114208196_mdf_72_scene_1.png
+text Two hands with long nails hold a pack of credit cards
+[{'uniq_id': '42', 'box': [822.070068359375, 663.2249755859375, 1242.330322265625, 952.737060546875]}]
+<class 'pandas.core.series.Series'>
+114208196_mdf_98_scene_1
+../../lsmdc_s1_gt_mdf/114208196_mdf_98_scene_1.png
+text Two hands with long nails hold a pack of credit cards
+[{'uniq_id': '42', 'box': [0.0, 224.91978454589844, 330.05804443359375, 948.1233520507812]}]
+<class 'pandas.core.series.Series'>
+114208744_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114208744_mdf_2_scene_0.png
+text A red-headed young lady stands behind the rails of a ship, and a young man stands behind her trying to help out
+[{'uniq_id': '42', 'box': [1117.2772216796875, 196.0839080810547, 1547.7877197265625, 948.1233520507812]}]
+<class 'pandas.core.series.Series'>
+114208744_mdf_14_scene_0
+../../lsmdc_s1_gt_mdf/114208744_mdf_14_scene_0.png
+text A red-headed young lady stands behind the rails of a ship, and a young man stands behind her trying to help out
+[{'uniq_id': '42', 'box': [1152.1280517578125, 199.54421997070312, 1555.9879150390625, 948.1233520507812]}]
+<class 'pandas.core.series.Series'>
+114208744_mdf_27_scene_0
+../../lsmdc_s1_gt_mdf/114208744_mdf_27_scene_0.png
+text A red-headed young lady stands behind the rails of a ship, and a young man stands behind her trying to help out
+[{'uniq_id': '42', 'box': [1152.1280517578125, 201.85107421875, 1555.9879150390625, 948.1233520507812]}]
+<class 'pandas.core.series.Series'>
+114208744_mdf_31_scene_1
+../../lsmdc_s1_gt_mdf/114208744_mdf_31_scene_1.png
+text A red-headed young lady stands behind the rails of a ship, and a young man stands behind her trying to help out
+[{'uniq_id': '42', 'box': [346.4584655761719, 212.23199462890625, 1102.9268798828125, 952.737060546875]}]
+<class 'pandas.core.series.Series'>
+114208744_mdf_64_scene_1
+../../lsmdc_s1_gt_mdf/114208744_mdf_64_scene_1.png
+text A red-headed young lady stands behind the rails of a ship, and a young man stands behind her trying to help out
+[{'uniq_id': '42', 'box': [321.85784912109375, 209.9251251220703, 1018.8748779296875, 911.2134399414062]}]
+<class 'pandas.core.series.Series'>
+114208744_mdf_98_scene_1
+../../lsmdc_s1_gt_mdf/114208744_mdf_98_scene_1.png
+text A red-headed young lady stands behind the rails of a ship, and a young man stands behind her trying to help out
+[{'uniq_id': '42', 'box': [293.15716552734375, 217.99916076660156, 971.7236938476562, 900.8325805664062]}]
+<class 'pandas.core.series.Series'>
+114208744_mdf_102_scene_2
+../../lsmdc_s1_gt_mdf/114208744_mdf_102_scene_2.png
+text A red-headed young lady stands behind the rails of a ship, and a young man stands behind her trying to help out
+[{'uniq_id': '42', 'box': [227.55555725097656, 118.80377960205078, 2048.0, 1064.6202392578125]}]
+<class 'pandas.core.series.Series'>
+114208744_mdf_147_scene_2
+../../lsmdc_s1_gt_mdf/114208744_mdf_147_scene_2.png
+text A red-headed young lady stands behind the rails of a ship, and a young man stands behind her trying to help out
+[{'uniq_id': '42', 'box': [24.600601196289062, 129.1846923828125, 2048.0, 981.5729370117188]}]
+<class 'pandas.core.series.Series'>
+114208744_mdf_193_scene_2
+../../lsmdc_s1_gt_mdf/114208744_mdf_193_scene_2.png
+text A red-headed young lady stands behind the rails of a ship, and a young man stands behind her trying to help out
+[{'uniq_id': '42', 'box': [336.20819091796875, 124.5709457397461, 2048.0, 1129.212646484375]}]
+<class 'pandas.core.series.Series'>
+114208744_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114208744_mdf_2_scene_0.png
+text A hand is reached out from the right and another hand appears from the left for a handshake
+[{'uniq_id': '42', 'box': [1107.0269775390625, 197.2373504638672, 1555.9879150390625, 948.1233520507812]}]
+<class 'pandas.core.series.Series'>
+114208744_mdf_14_scene_0
+../../lsmdc_s1_gt_mdf/114208744_mdf_14_scene_0.png
+text A hand is reached out from the right and another hand appears from the left for a handshake
+[{'uniq_id': '42', 'box': [1139.8277587890625, 201.85107421875, 1555.9879150390625, 948.1233520507812]}]
+<class 'pandas.core.series.Series'>
+114208744_mdf_27_scene_0
+../../lsmdc_s1_gt_mdf/114208744_mdf_27_scene_0.png
+text A hand is reached out from the right and another hand appears from the left for a handshake
+[{'uniq_id': '42', 'box': [1152.1280517578125, 201.85107421875, 1555.9879150390625, 948.1233520507812]}]
+<class 'pandas.core.series.Series'>
+114208744_mdf_31_scene_1
+../../lsmdc_s1_gt_mdf/114208744_mdf_31_scene_1.png
+text A hand is reached out from the right and another hand appears from the left for a handshake
+[{'uniq_id': '42', 'box': [350.5585632324219, 212.23199462890625, 1107.0269775390625, 956.1973876953125]}]
+<class 'pandas.core.series.Series'>
+114208744_mdf_64_scene_1
+../../lsmdc_s1_gt_mdf/114208744_mdf_64_scene_1.png
+text A hand is reached out from the right and another hand appears from the left for a handshake
+[{'uniq_id': '42', 'box': [375.1591491699219, 253.75564575195312, 2037.749755859375, 952.737060546875]}]
+<class 'pandas.core.series.Series'>
+114208744_mdf_98_scene_1
+../../lsmdc_s1_gt_mdf/114208744_mdf_98_scene_1.png
+text A hand is reached out from the right and another hand appears from the left for a handshake
+[{'uniq_id': '42', 'box': [301.35736083984375, 264.1365661621094, 1904.4964599609375, 952.737060546875]}]
+<class 'pandas.core.series.Series'>
+114208744_mdf_102_scene_2
+../../lsmdc_s1_gt_mdf/114208744_mdf_102_scene_2.png
+text A hand is reached out from the right and another hand appears from the left for a handshake
+[{'uniq_id': '42', 'box': [227.55555725097656, 121.11064910888672, 2048.0, 987.340087890625]}]
+<class 'pandas.core.series.Series'>
+114208744_mdf_147_scene_2
+../../lsmdc_s1_gt_mdf/114208744_mdf_147_scene_2.png
+text A hand is reached out from the right and another hand appears from the left for a handshake
+[{'uniq_id': '42', 'box': [18.450450897216797, 129.1846923828125, 2048.0, 987.340087890625]}]
+<class 'pandas.core.series.Series'>
+114208744_mdf_193_scene_2
+../../lsmdc_s1_gt_mdf/114208744_mdf_193_scene_2.png
+text A hand is reached out from the right and another hand appears from the left for a handshake
+[{'uniq_id': '42', 'box': [336.20819091796875, 126.87782287597656, 2048.0, 823.5524291992188]}]
+<class 'pandas.core.series.Series'>
+114208744_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114208744_mdf_2_scene_0.png
+text A man with a long-sleeved shirt comes from behind to offer help to a red-headed lady on a deck of a ship
+[{'uniq_id': '42', 'box': [1127.5274658203125, 196.0839080810547, 1547.7877197265625, 948.1233520507812]}]
+<class 'pandas.core.series.Series'>
+114208744_mdf_14_scene_0
+../../lsmdc_s1_gt_mdf/114208744_mdf_14_scene_0.png
+text A man with a long-sleeved shirt comes from behind to offer help to a red-headed lady on a deck of a ship
+[{'uniq_id': '42', 'box': [1176.728759765625, 201.85107421875, 1555.9879150390625, 943.5096435546875]}]
+<class 'pandas.core.series.Series'>
+114208744_mdf_27_scene_0
+../../lsmdc_s1_gt_mdf/114208744_mdf_27_scene_0.png
+text A man with a long-sleeved shirt comes from behind to offer help to a red-headed lady on a deck of a ship
+[{'uniq_id': '42', 'box': [1152.1280517578125, 201.85107421875, 1555.9879150390625, 948.1233520507812]}]
+<class 'pandas.core.series.Series'>
+114208744_mdf_31_scene_1
+../../lsmdc_s1_gt_mdf/114208744_mdf_31_scene_1.png
+text A man with a long-sleeved shirt comes from behind to offer help to a red-headed lady on a deck of a ship
+[{'uniq_id': '42', 'box': [1035.2752685546875, 264.1365661621094, 2041.849853515625, 952.737060546875]}]
+<class 'pandas.core.series.Series'>
+114208744_mdf_64_scene_1
+../../lsmdc_s1_gt_mdf/114208744_mdf_64_scene_1.png
+text A man with a long-sleeved shirt comes from behind to offer help to a red-headed lady on a deck of a ship
+[{'uniq_id': '42', 'box': [375.1591491699219, 253.75564575195312, 2031.599609375, 952.737060546875]}]
+<class 'pandas.core.series.Series'>
+114208744_mdf_98_scene_1
+../../lsmdc_s1_gt_mdf/114208744_mdf_98_scene_1.png
+text A man with a long-sleeved shirt comes from behind to offer help to a red-headed lady on a deck of a ship
+[{'uniq_id': '42', 'box': [301.35736083984375, 260.6762390136719, 1904.4964599609375, 952.737060546875]}]
+<class 'pandas.core.series.Series'>
+114208744_mdf_102_scene_2
+../../lsmdc_s1_gt_mdf/114208744_mdf_102_scene_2.png
+text A man with a long-sleeved shirt comes from behind to offer help to a red-headed lady on a deck of a ship
+[{'uniq_id': '42', 'box': [227.55555725097656, 118.80377960205078, 2048.0, 1020.789794921875]}]
+<class 'pandas.core.series.Series'>
+114208744_mdf_147_scene_2
+../../lsmdc_s1_gt_mdf/114208744_mdf_147_scene_2.png
+text A man with a long-sleeved shirt comes from behind to offer help to a red-headed lady on a deck of a ship
+[{'uniq_id': '42', 'box': [18.450450897216797, 126.87782287597656, 2048.0, 1064.6202392578125]}]
+<class 'pandas.core.series.Series'>
+114208744_mdf_193_scene_2
+../../lsmdc_s1_gt_mdf/114208744_mdf_193_scene_2.png
+text A man with a long-sleeved shirt comes from behind to offer help to a red-headed lady on a deck of a ship
+[{'uniq_id': '42', 'box': [330.05804443359375, 124.5709457397461, 2048.0, 1129.212646484375]}]
+<class 'pandas.core.series.Series'>
+114206337_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114206337_mdf_2_scene_0.png
+text A lady with a white V-neck shirt and a jacket stands in a room with the main door behind her and then turns to leave
+[{'uniq_id': '42', 'box': [844.62060546875, 147.6396484375, 1478.0860595703125, 956.1973876953125]}]
+<class 'pandas.core.series.Series'>
+114206337_mdf_36_scene_0
+../../lsmdc_s1_gt_mdf/114206337_mdf_36_scene_0.png
+text A lady with a white V-neck shirt and a jacket stands in a room with the main door behind her and then turns to leave
+[{'uniq_id': '42', 'box': [717.5175170898438, 145.33277893066406, 1353.032958984375, 971.1920166015625]}]
+<class 'pandas.core.series.Series'>
+114206337_mdf_71_scene_0
+../../lsmdc_s1_gt_mdf/114206337_mdf_71_scene_0.png
+text A lady with a white V-neck shirt and a jacket stands in a room with the main door behind her and then turns to leave
+[{'uniq_id': '42', 'box': [1238.230224609375, 162.63430786132812, 1726.14208984375, 944.6630249023438]}]
+<class 'pandas.core.series.Series'>
+114206337_mdf_75_scene_1
+../../lsmdc_s1_gt_mdf/114206337_mdf_75_scene_1.png
+text A lady with a white V-neck shirt and a jacket stands in a room with the main door behind her and then turns to leave
+[{'uniq_id': '42', 'box': [1143.9278564453125, 205.31138610839844, 1377.6336669921875, 911.2134399414062]}]
+<class 'pandas.core.series.Series'>
+114206337_mdf_100_scene_1
+../../lsmdc_s1_gt_mdf/114206337_mdf_100_scene_1.png
+text A lady with a white V-neck shirt and a jacket stands in a room with the main door behind her and then turns to leave
+[{'uniq_id': '42', 'box': [1080.3763427734375, 221.45947265625, 1299.731689453125, 911.2134399414062]}]
+<class 'pandas.core.series.Series'>
+114206337_mdf_125_scene_1
+../../lsmdc_s1_gt_mdf/114206337_mdf_125_scene_1.png
+text A lady with a white V-neck shirt and a jacket stands in a room with the main door behind her and then turns to leave
+[{'uniq_id': '42', 'box': [981.9739379882812, 230.68695068359375, 1152.1280517578125, 833.9332885742188]}]
+<class 'pandas.core.series.Series'>
+114206337_mdf_129_scene_2
+../../lsmdc_s1_gt_mdf/114206337_mdf_129_scene_2.png
+text A lady with a white V-neck shirt and a jacket stands in a room with the main door behind her and then turns to leave
+[{'uniq_id': '42', 'box': [1201.329345703125, 512.1250610351562, 1484.2362060546875, 950.4302368164062]}]
+<class 'pandas.core.series.Series'>
+114206337_mdf_129_scene_2
+../../lsmdc_s1_gt_mdf/114206337_mdf_129_scene_2.png
+text A lady with a white V-neck shirt and a jacket stands in a room with the main door behind her and then turns to leave
+[{'uniq_id': '42', 'box': [1201.329345703125, 512.1250610351562, 1484.2362060546875, 950.4302368164062]}]
+<class 'pandas.core.series.Series'>
+114206337_mdf_129_scene_2
+../../lsmdc_s1_gt_mdf/114206337_mdf_129_scene_2.png
+text A lady with a white V-neck shirt and a jacket stands in a room with the main door behind her and then turns to leave
+[{'uniq_id': '42', 'box': [1201.329345703125, 512.1250610351562, 1484.2362060546875, 950.4302368164062]}]
+<class 'pandas.core.series.Series'>
+114206337_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114206337_mdf_2_scene_0.png
+text A lady picks her bag and turns to leave the room with a refrigerator and vases with flowers
+[{'uniq_id': '42', 'box': [838.470458984375, 147.6396484375, 1478.0860595703125, 956.1973876953125]}]
+<class 'pandas.core.series.Series'>
+114206337_mdf_36_scene_0
+../../lsmdc_s1_gt_mdf/114206337_mdf_36_scene_0.png
+text A lady picks her bag and turns to leave the room with a refrigerator and vases with flowers
+[{'uniq_id': '42', 'box': [715.4674682617188, 145.33277893066406, 1353.032958984375, 971.1920166015625]}]
+<class 'pandas.core.series.Series'>
+114206337_mdf_71_scene_0
+../../lsmdc_s1_gt_mdf/114206337_mdf_71_scene_0.png
+text A lady picks her bag and turns to leave the room with a refrigerator and vases with flowers
+[{'uniq_id': '42', 'box': [1234.130126953125, 162.63430786132812, 1726.14208984375, 944.6630249023438]}]
+<class 'pandas.core.series.Series'>
+114206337_mdf_75_scene_1
+../../lsmdc_s1_gt_mdf/114206337_mdf_75_scene_1.png
+text A lady picks her bag and turns to leave the room with a refrigerator and vases with flowers
+[{'uniq_id': '42', 'box': [1137.7777099609375, 205.31138610839844, 1377.6336669921875, 911.2134399414062]}]
+<class 'pandas.core.series.Series'>
+114206337_mdf_100_scene_1
+../../lsmdc_s1_gt_mdf/114206337_mdf_100_scene_1.png
+text A lady picks her bag and turns to leave the room with a refrigerator and vases with flowers
+[{'uniq_id': '42', 'box': [1080.3763427734375, 221.45947265625, 1299.731689453125, 911.2134399414062]}]
+<class 'pandas.core.series.Series'>
+114206337_mdf_125_scene_1
+../../lsmdc_s1_gt_mdf/114206337_mdf_125_scene_1.png
+text A lady picks her bag and turns to leave the room with a refrigerator and vases with flowers
+[{'uniq_id': '42', 'box': [977.8738403320312, 230.68695068359375, 1164.428466796875, 833.9332885742188]}]
+<class 'pandas.core.series.Series'>
+114206337_mdf_129_scene_2
+../../lsmdc_s1_gt_mdf/114206337_mdf_129_scene_2.png
+text A lady picks her bag and turns to leave the room with a refrigerator and vases with flowers
+[{'uniq_id': '42', 'box': [1209.529541015625, 512.1250610351562, 1494.4864501953125, 956.1973876953125]}]
+<class 'pandas.core.series.Series'>
+114206337_mdf_129_scene_2
+../../lsmdc_s1_gt_mdf/114206337_mdf_129_scene_2.png
+text A lady picks her bag and turns to leave the room with a refrigerator and vases with flowers
+[{'uniq_id': '42', 'box': [1209.529541015625, 512.1250610351562, 1494.4864501953125, 956.1973876953125]}]
+<class 'pandas.core.series.Series'>
+114206337_mdf_129_scene_2
+../../lsmdc_s1_gt_mdf/114206337_mdf_129_scene_2.png
+text A lady picks her bag and turns to leave the room with a refrigerator and vases with flowers
+[{'uniq_id': '42', 'box': [1209.529541015625, 512.1250610351562, 1494.4864501953125, 956.1973876953125]}]
+<class 'pandas.core.series.Series'>
+114206548_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114206548_mdf_2_scene_0.png
+text An SUV drives on a street in the suburb at night with its headlights on and its pouring rain
+[{'uniq_id': '42', 'box': [1242.330322265625, 432.53802490234375, 1726.14208984375, 794.716552734375]}]
+<class 'pandas.core.series.Series'>
+114206548_mdf_16_scene_0
+../../lsmdc_s1_gt_mdf/114206548_mdf_16_scene_0.png
+text An SUV drives on a street in the suburb at night with its headlights on and its pouring rain
+[{'uniq_id': '42', 'box': [752.3683471679688, 299.8930358886719, 1560.0880126953125, 877.7637939453125]}]
+<class 'pandas.core.series.Series'>
+114206548_mdf_30_scene_0
+../../lsmdc_s1_gt_mdf/114206548_mdf_30_scene_0.png
+text An SUV drives on a street in the suburb at night with its headlights on and its pouring rain
+[{'uniq_id': '42', 'box': [692.9169311523438, 289.5121154785156, 1525.2371826171875, 950.4302368164062]}]
+<class 'pandas.core.series.Series'>
+114206548_mdf_34_scene_1
+../../lsmdc_s1_gt_mdf/114206548_mdf_34_scene_1.png
+text An SUV drives on a street in the suburb at night with its headlights on and its pouring rain
+[{'uniq_id': '42', 'box': [0.0, 92.2747802734375, 2048.0, 1152.2813720703125]}]
+<class 'pandas.core.series.Series'>
+114206548_mdf_168_scene_1
+../../lsmdc_s1_gt_mdf/114206548_mdf_168_scene_1.png
+text An SUV drives on a street in the suburb at night with its headlights on and its pouring rain
+[{'uniq_id': '42', 'box': [0.0, 126.87782287597656, 2048.0, 987.340087890625]}]
+<class 'pandas.core.series.Series'>
+114206548_mdf_302_scene_1
+../../lsmdc_s1_gt_mdf/114206548_mdf_302_scene_1.png
+text An SUV drives on a street in the suburb at night with its headlights on and its pouring rain
+[{'uniq_id': '42', 'box': [0.0, 118.80377960205078, 797.469482421875, 1152.2813720703125]}]
+<class 'pandas.core.series.Series'>
+114206548_mdf_304_scene_2
+../../lsmdc_s1_gt_mdf/114206548_mdf_304_scene_2.png
+text An SUV drives on a street in the suburb at night with its headlights on and its pouring rain
+[{'uniq_id': '42', 'box': [742.1181030273438, 532.8868408203125, 1363.283203125, 944.6630249023438]}]
+<class 'pandas.core.series.Series'>
+114206548_mdf_303_scene_2
+../../lsmdc_s1_gt_mdf/114206548_mdf_303_scene_2.png
+text An SUV drives on a street in the suburb at night with its headlights on and its pouring rain
+[{'uniq_id': '42', 'box': [0.0, 114.1900405883789, 772.8688354492188, 863.922607421875]}]
+<class 'pandas.core.series.Series'>
+114206548_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114206548_mdf_2_scene_0.png
+text A blonde lady with a short haircut drives a car at night while it is raining; she holds the steering wheel and says: "I refuse to be a victim"
+[{'uniq_id': '42', 'box': [1240.2802734375, 432.53802490234375, 1717.94189453125, 794.716552734375]}]
+<class 'pandas.core.series.Series'>
+114206548_mdf_16_scene_0
+../../lsmdc_s1_gt_mdf/114206548_mdf_16_scene_0.png
+text A blonde lady with a short haircut drives a car at night while it is raining; she holds the steering wheel and says: "I refuse to be a victim"
+[{'uniq_id': '42', 'box': [828.22021484375, 304.50677490234375, 1576.488525390625, 877.7637939453125]}]
+<class 'pandas.core.series.Series'>
+114206548_mdf_30_scene_0
+../../lsmdc_s1_gt_mdf/114206548_mdf_30_scene_0.png
+text A blonde lady with a short haircut drives a car at night while it is raining; she holds the steering wheel and says: "I refuse to be a victim"
+[{'uniq_id': '42', 'box': [692.9169311523438, 289.5121154785156, 1332.532470703125, 540.9608764648438]}]
+<class 'pandas.core.series.Series'>
+114206548_mdf_34_scene_1
+../../lsmdc_s1_gt_mdf/114206548_mdf_34_scene_1.png
+text A blonde lady with a short haircut drives a car at night while it is raining; she holds the steering wheel and says: "I refuse to be a victim"
+[{'uniq_id': '42', 'box': [0.0, 92.2747802734375, 2048.0, 1152.2813720703125]}]
+<class 'pandas.core.series.Series'>
+114206548_mdf_168_scene_1
+../../lsmdc_s1_gt_mdf/114206548_mdf_168_scene_1.png
+text A blonde lady with a short haircut drives a car at night while it is raining; she holds the steering wheel and says: "I refuse to be a victim"
+[{'uniq_id': '42', 'box': [520.7127075195312, 134.9518585205078, 1590.8388671875, 944.6630249023438]}]
+<class 'pandas.core.series.Series'>
+114206548_mdf_302_scene_1
+../../lsmdc_s1_gt_mdf/114206548_mdf_302_scene_1.png
+text A blonde lady with a short haircut drives a car at night while it is raining; she holds the steering wheel and says: "I refuse to be a victim"
+[{'uniq_id': '42', 'box': [520.7127075195312, 129.1846923828125, 1687.191162109375, 948.1233520507812]}]
+<class 'pandas.core.series.Series'>
+114206548_mdf_304_scene_2
+../../lsmdc_s1_gt_mdf/114206548_mdf_304_scene_2.png
+text A blonde lady with a short haircut drives a car at night while it is raining; she holds the steering wheel and says: "I refuse to be a victim"
+[{'uniq_id': '42', 'box': [0.0, 561.7227172851562, 502.26226806640625, 960.8110961914062]}]
+<class 'pandas.core.series.Series'>
+114206548_mdf_303_scene_2
+../../lsmdc_s1_gt_mdf/114206548_mdf_303_scene_2.png
+text A blonde lady with a short haircut drives a car at night while it is raining; she holds the steering wheel and says: "I refuse to be a victim"
+[{'uniq_id': '42', 'box': [502.26226806640625, 129.1846923828125, 1668.74072265625, 948.1233520507812]}]
+<class 'pandas.core.series.Series'>
+114206849_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114206849_mdf_2_scene_0.png
+text James Bond in a suit and a tie holds his passport at the baggage reclaim area in an airport
+[{'uniq_id': '42', 'box': [145.55355834960938, 322.9617004394531, 756.4684448242188, 944.6630249023438]}]
+<class 'pandas.core.series.Series'>
+114206849_mdf_18_scene_0
+../../lsmdc_s1_gt_mdf/114206849_mdf_18_scene_0.png
+text James Bond in a suit and a tie holds his passport at the baggage reclaim area in an airport
+[{'uniq_id': '42', 'box': [906.1221313476562, 162.63430786132812, 1494.4864501953125, 948.1233520507812]}]
+<class 'pandas.core.series.Series'>
+114206849_mdf_34_scene_0
+../../lsmdc_s1_gt_mdf/114206849_mdf_34_scene_0.png
+text James Bond in a suit and a tie holds his passport at the baggage reclaim area in an airport
+[{'uniq_id': '42', 'box': [1045.5255126953125, 145.33277893066406, 1535.4874267578125, 942.356201171875]}]
+<class 'pandas.core.series.Series'>
+114206849_mdf_39_scene_1
+../../lsmdc_s1_gt_mdf/114206849_mdf_39_scene_1.png
+text James Bond in a suit and a tie holds his passport at the baggage reclaim area in an airport
+[{'uniq_id': '42', 'box': [418.210205078125, 284.89837646484375, 623.2152099609375, 800.4837036132812]}]
+<class 'pandas.core.series.Series'>
+114206849_mdf_45_scene_1
+../../lsmdc_s1_gt_mdf/114206849_mdf_45_scene_1.png
+text James Bond in a suit and a tie holds his passport at the baggage reclaim area in an airport
+[{'uniq_id': '42', 'box': [658.0660400390625, 141.8724822998047, 1008.6246337890625, 942.356201171875]}]
+<class 'pandas.core.series.Series'>
+114206849_mdf_44_scene_1
+../../lsmdc_s1_gt_mdf/114206849_mdf_44_scene_1.png
+text James Bond in a suit and a tie holds his passport at the baggage reclaim area in an airport
+[{'uniq_id': '42', 'box': [680.6165771484375, 145.33277893066406, 1018.8748779296875, 942.356201171875]}]
+<class 'pandas.core.series.Series'>
+114206999_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114206999_mdf_2_scene_0.png
+text Jamal Malik is sad and sitting on the floor of a train station
+[{'uniq_id': '42', 'box': [489.9619445800781, 158.0205535888672, 1379.6837158203125, 944.6630249023438]}]
+<class 'pandas.core.series.Series'>
+114206999_mdf_39_scene_0
+../../lsmdc_s1_gt_mdf/114206999_mdf_39_scene_0.png
+text Jamal Malik is sad and sitting on the floor of a train station
+[{'uniq_id': '42', 'box': [375.1591491699219, 137.25872802734375, 1299.731689453125, 945.8164672851562]}]
+<class 'pandas.core.series.Series'>
+114206999_mdf_77_scene_0
+../../lsmdc_s1_gt_mdf/114206999_mdf_77_scene_0.png
+text Jamal Malik is sad and sitting on the floor of a train station
+[{'uniq_id': '42', 'box': [373.1091003417969, 149.94651794433594, 1285.38134765625, 944.6630249023438]}]
+<class 'pandas.core.series.Series'>
+114207474_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114207474_mdf_2_scene_0.png
+text A blonde lady with a braclet on her hand, sits on a bed, covered with a blanket, her back to the pillows, and talks with a man
+[{'uniq_id': '42', 'box': [947.1231079101562, 100.34882354736328, 1611.33935546875, 927.3615112304688]}]
+<class 'pandas.core.series.Series'>
+114207474_mdf_24_scene_0
+../../lsmdc_s1_gt_mdf/114207474_mdf_24_scene_0.png
+text A blonde lady with a braclet on her hand, sits on a bed, covered with a blanket, her back to the pillows, and talks with a man
+[{'uniq_id': '42', 'box': [951.2232055664062, 93.42820739746094, 1615.439453125, 927.3615112304688]}]
+<class 'pandas.core.series.Series'>
+114207474_mdf_46_scene_0
+../../lsmdc_s1_gt_mdf/114207474_mdf_46_scene_0.png
+text A blonde lady with a braclet on her hand, sits on a bed, covered with a blanket, her back to the pillows, and talks with a man
+[{'uniq_id': '42', 'box': [951.2232055664062, 100.34882354736328, 1611.33935546875, 927.3615112304688]}]
+<class 'pandas.core.series.Series'>
+114207984_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114207984_mdf_2_scene_0.png
+text A young colonial soldier wearing a hat
+[{'uniq_id': '42', 'box': [137.3533477783203, 126.87782287597656, 1521.1370849609375, 983.8798217773438]}]
+<class 'pandas.core.series.Series'>
+114207984_mdf_24_scene_0
+../../lsmdc_s1_gt_mdf/114207984_mdf_24_scene_0.png
+text A young colonial soldier wearing a hat
+[{'uniq_id': '42', 'box': [375.1591491699219, 125.7243881225586, 1463.7357177734375, 952.737060546875]}]
+<class 'pandas.core.series.Series'>
+114207984_mdf_46_scene_0
+../../lsmdc_s1_gt_mdf/114207984_mdf_46_scene_0.png
+text A young colonial soldier wearing a hat
+[{'uniq_id': '42', 'box': [442.810791015625, 131.49156188964844, 797.469482421875, 927.3615112304688]}]
+<class 'pandas.core.series.Series'>
+114207139_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114207139_mdf_2_scene_0.png
+text Molly Weasley stands in a room and scolds her two childred while they run by
+[{'uniq_id': '42', 'box': [516.6126098632812, 401.3952941894531, 1287.431396484375, 944.6630249023438]}]
+<class 'pandas.core.series.Series'>
+114207139_mdf_27_scene_0
+../../lsmdc_s1_gt_mdf/114207139_mdf_27_scene_0.png
+text Molly Weasley stands in a room and scolds her two childred while they run by
+[{'uniq_id': '42', 'box': [971.7236938476562, 367.9456787109375, 1566.2381591796875, 940.04931640625]}]
+<class 'pandas.core.series.Series'>
+114207139_mdf_52_scene_0
+../../lsmdc_s1_gt_mdf/114207139_mdf_52_scene_0.png
+text Molly Weasley stands in a room and scolds her two childred while they run by
+[{'uniq_id': '42', 'box': [168.10409545898438, 389.8609619140625, 1320.232177734375, 942.356201171875]}]
+<class 'pandas.core.series.Series'>
+114208064_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114208064_mdf_2_scene_0.png
+text A mother holds a baby covered in a blanket
+[{'uniq_id': '42', 'box': [467.4114074707031, 221.45947265625, 916.3723754882812, 1137.28662109375]}]
+<class 'pandas.core.series.Series'>
+114208064_mdf_24_scene_0
+../../lsmdc_s1_gt_mdf/114208064_mdf_24_scene_0.png
+text A mother holds a baby covered in a blanket
+[{'uniq_id': '42', 'box': [473.5615539550781, 212.23199462890625, 1057.8258056640625, 1121.1385498046875]}]
+<class 'pandas.core.series.Series'>
+114208064_mdf_46_scene_0
+../../lsmdc_s1_gt_mdf/114208064_mdf_46_scene_0.png
+text A mother holds a baby covered in a blanket
+[{'uniq_id': '42', 'box': [561.7136840820312, 282.5915222167969, 797.469482421875, 915.8272094726562]}]
+<class 'pandas.core.series.Series'>
+114207953_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114207953_mdf_2_scene_0.png
+text A man picks up a little girl from a wooden platform and hugs her in her arms
+[{'uniq_id': '42', 'box': [100.45245361328125, 219.152587890625, 1375.5836181640625, 1092.302734375]}]
+<class 'pandas.core.series.Series'>
+114207953_mdf_39_scene_0
+../../lsmdc_s1_gt_mdf/114207953_mdf_39_scene_0.png
+text A man picks up a little girl from a wooden platform and hugs her in her arms
+[{'uniq_id': '42', 'box': [155.80380249023438, 331.0357971191406, 1424.7847900390625, 1092.302734375]}]
+<class 'pandas.core.series.Series'>
+114207953_mdf_77_scene_0
+../../lsmdc_s1_gt_mdf/114207953_mdf_77_scene_0.png
+text A man picks up a little girl from a wooden platform and hugs her in her arms
+[{'uniq_id': '42', 'box': [291.10711669921875, 178.78237915039062, 1379.6837158203125, 1098.06982421875]}]
+<class 'pandas.core.series.Series'>
+114207550_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114207550_mdf_2_scene_0.png
+text A man with a leather jacket shoots with a pistol another man and a third man with a wool hat rushes in, in a snowy camp with people watching
+[{'uniq_id': '42', 'box': [1225.929931640625, 10.380912780761719, 2048.0, 1110.757568359375]}]
+<class 'pandas.core.series.Series'>
+114207550_mdf_9_scene_0
+../../lsmdc_s1_gt_mdf/114207550_mdf_9_scene_0.png
+text A man with a leather jacket shoots with a pistol another man and a third man with a wool hat rushes in, in a snowy camp with people watching
+[{'uniq_id': '42', 'box': [565.8137817382812, 23.068695068359375, 1334.58251953125, 1095.762939453125]}]
+<class 'pandas.core.series.Series'>
+114207550_mdf_17_scene_0
+../../lsmdc_s1_gt_mdf/114207550_mdf_17_scene_0.png
+text A man with a leather jacket shoots with a pistol another man and a third man with a wool hat rushes in, in a snowy camp with people watching
+[{'uniq_id': '42', 'box': [922.5225219726562, 499.4372253417969, 1334.58251953125, 987.340087890625]}]
+<class 'pandas.core.series.Series'>
+114207550_mdf_22_scene_1
+../../lsmdc_s1_gt_mdf/114207550_mdf_22_scene_1.png
+text A man with a leather jacket shoots with a pistol another man and a third man with a wool hat rushes in, in a snowy camp with people watching
+[{'uniq_id': '42', 'box': [869.22119140625, 264.1365661621094, 1096.7767333984375, 786.6425170898438]}]
+<class 'pandas.core.series.Series'>
+114207550_mdf_30_scene_1
+../../lsmdc_s1_gt_mdf/114207550_mdf_30_scene_1.png
+text A man with a leather jacket shoots with a pistol another man and a third man with a wool hat rushes in, in a snowy camp with people watching
+[{'uniq_id': '42', 'box': [914.3223266601562, 299.8930358886719, 1117.2772216796875, 779.721923828125]}]
+<class 'pandas.core.series.Series'>
+114207550_mdf_32_scene_1
+../../lsmdc_s1_gt_mdf/114207550_mdf_32_scene_1.png
+text A man with a leather jacket shoots with a pistol another man and a third man with a wool hat rushes in, in a snowy camp with people watching
+[{'uniq_id': '42', 'box': [1588.788818359375, 304.50677490234375, 2004.948974609375, 734.7379150390625]}]
+<class 'pandas.core.series.Series'>
+114207550_mdf_37_scene_2
+../../lsmdc_s1_gt_mdf/114207550_mdf_37_scene_2.png
+text A man with a leather jacket shoots with a pistol another man and a third man with a wool hat rushes in, in a snowy camp with people watching
+[{'uniq_id': '42', 'box': [494.0620422363281, 173.0152130126953, 861.02099609375, 1089.995849609375]}]
+<class 'pandas.core.series.Series'>
+114207550_mdf_47_scene_2
+../../lsmdc_s1_gt_mdf/114207550_mdf_47_scene_2.png
+text A man with a leather jacket shoots with a pistol another man and a third man with a wool hat rushes in, in a snowy camp with people watching
+[{'uniq_id': '42', 'box': [422.310302734375, 230.68695068359375, 781.0690307617188, 1089.995849609375]}]
+<class 'pandas.core.series.Series'>
+114207550_mdf_58_scene_2
+../../lsmdc_s1_gt_mdf/114207550_mdf_58_scene_2.png
+text A man with a leather jacket shoots with a pistol another man and a third man with a wool hat rushes in, in a snowy camp with people watching
+[{'uniq_id': '42', 'box': [227.55555725097656, 49.597694396972656, 1143.9278564453125, 1102.68359375]}]
+<class 'pandas.core.series.Series'>
+114207550_mdf_62_scene_3
+../../lsmdc_s1_gt_mdf/114207550_mdf_62_scene_3.png
+text A man with a leather jacket shoots with a pistol another man and a third man with a wool hat rushes in, in a snowy camp with people watching
+[{'uniq_id': '42', 'box': [442.810791015625, 12.687782287597656, 1029.1251220703125, 1085.382080078125]}]
+<class 'pandas.core.series.Series'>
+114207550_mdf_68_scene_3
+../../lsmdc_s1_gt_mdf/114207550_mdf_68_scene_3.png
+text A man with a leather jacket shoots with a pistol another man and a third man with a wool hat rushes in, in a snowy camp with people watching
+[{'uniq_id': '42', 'box': [805.669677734375, 18.4549560546875, 1328.432373046875, 688.6005249023438]}]
+<class 'pandas.core.series.Series'>
+114207550_mdf_74_scene_3
+../../lsmdc_s1_gt_mdf/114207550_mdf_74_scene_3.png
+text A man with a leather jacket shoots with a pistol another man and a third man with a wool hat rushes in, in a snowy camp with people watching
+[{'uniq_id': '42', 'box': [805.669677734375, 28.83586883544922, 1377.6336669921875, 678.2196655273438]}]
+<class 'pandas.core.series.Series'>
+114207550_mdf_79_scene_4
+../../lsmdc_s1_gt_mdf/114207550_mdf_79_scene_4.png
+text A man with a leather jacket shoots with a pistol another man and a third man with a wool hat rushes in, in a snowy camp with people watching
+[{'uniq_id': '42', 'box': [1076.2762451171875, 114.1900405883789, 1484.2362060546875, 950.4302368164062]}]
+<class 'pandas.core.series.Series'>
+114207550_mdf_85_scene_4
+../../lsmdc_s1_gt_mdf/114207550_mdf_85_scene_4.png
+text A man with a leather jacket shoots with a pistol another man and a third man with a wool hat rushes in, in a snowy camp with people watching
+[{'uniq_id': '42', 'box': [1117.2772216796875, 114.1900405883789, 1531.3873291015625, 960.8110961914062]}]
+<class 'pandas.core.series.Series'>
+114207550_mdf_84_scene_4
+../../lsmdc_s1_gt_mdf/114207550_mdf_84_scene_4.png
+text A man with a leather jacket shoots with a pistol another man and a third man with a wool hat rushes in, in a snowy camp with people watching
+[{'uniq_id': '42', 'box': [1113.1771240234375, 110.729736328125, 1494.4864501953125, 960.8110961914062]}]
+<class 'pandas.core.series.Series'>
+114207240_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114207240_mdf_2_scene_0.png
+text A woman and a man inside a building enter a hallway and stop in front of a door
+[{'uniq_id': '42', 'box': [537.1130981445312, 222.6129150390625, 801.569580078125, 1023.0966186523438]}]
+<class 'pandas.core.series.Series'>
+114207240_mdf_24_scene_0
+../../lsmdc_s1_gt_mdf/114207240_mdf_24_scene_0.png
+text A woman and a man inside a building enter a hallway and stop in front of a door
+[{'uniq_id': '42', 'box': [442.810791015625, 201.85107421875, 768.7687377929688, 975.8057861328125]}]
+<class 'pandas.core.series.Series'>
+114207240_mdf_46_scene_0
+../../lsmdc_s1_gt_mdf/114207240_mdf_46_scene_0.png
+text A woman and a man inside a building enter a hallway and stop in front of a door
+[{'uniq_id': '42', 'box': [961.4734497070312, 183.3961181640625, 1246.430419921875, 823.5524291992188]}]
+<class 'pandas.core.series.Series'>
+114207668_mdf_2_scene_0
+../../lsmdc_s1_gt_mdf/114207668_mdf_2_scene_0.png
+text half naked Lieutenant Dan, with a cigarette in his mouth and holding a toilete paper, behind a straw fence, speaks to two soldiers with hats
+[{'uniq_id': '42', 'box': [0.0, 129.1846923828125, 723.6676635742188, 952.737060546875]}]
+<class 'pandas.core.series.Series'>
+114207668_mdf_26_scene_0
+../../lsmdc_s1_gt_mdf/114207668_mdf_26_scene_0.png
+text half naked Lieutenant Dan, with a cigarette in his mouth and holding a toilete paper, behind a straw fence, speaks to two soldiers with hats
+[{'uniq_id': '42', 'box': [858.970947265625, 287.20526123046875, 1389.9339599609375, 652.8441162109375]}]
+<class 'pandas.core.series.Series'>
+114207668_mdf_51_scene_0
+../../lsmdc_s1_gt_mdf/114207668_mdf_51_scene_0.png
+text half naked Lieutenant Dan, with a cigarette in his mouth and holding a toilete paper, behind a straw fence, speaks to two soldiers with hats
+[{'uniq_id': '42', 'box': [752.3683471679688, 272.2106018066406, 1396.0841064453125, 652.8441162109375]}]
+2022-05-22 16:44:37 | INFO | torch.distributed.distributed_c10d | Added key: store_based_barrier_key:2 to store for rank: 0
+2022-05-22 16:44:37 | INFO | torch.distributed.distributed_c10d | Rank 0: Completed store-based barrier for key:store_based_barrier_key:2 with 1 nodes.
