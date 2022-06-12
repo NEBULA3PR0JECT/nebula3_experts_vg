@@ -3,7 +3,7 @@ import torch
 import numpy as np
 from fairseq import utils, tasks
 from fairseq import checkpoint_utils
-from utils.eval_utils import eval_step
+from .utils.eval_utils import eval_step
 from tasks.mm_tasks.refcoco import RefcocoTask
 from models.ofa import OFAModel
 from PIL import Image
@@ -25,9 +25,9 @@ class OfaMultiModalVisualGrounding():
         self.use_fp16 = False
 
         # Load pretrained ckpt & config
-        overrides = {"bpe_dir": "../../utils/BPE"}
+        overrides = {"bpe_dir": "vg/utils/BPE"}
         self.models, cfg, self.task = checkpoint_utils.load_model_ensemble_and_task(
-            utils.split_paths('../../checkpoints/refcoco_large_best.pt'),
+            utils.split_paths('vg/checkpoints/refcoco_large_best.pt'),  #HK @@ TODO move to os.getenv
             arg_overrides=overrides
         )
 

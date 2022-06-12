@@ -1,0 +1,16 @@
+# Install Rest client extension to use this requests
+# https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+
+###
+POST http://localhost:8889/predict
+content-type: application/json
+
+{
+    "movie_id": "Movies/222509634",
+    "local": false,
+    "extra_params": {
+        "mdf": 3,
+        "caption": "A black man in plaid shirt is running within a crowd, carrying a scared girl in his arms"
+    }
+}
+
