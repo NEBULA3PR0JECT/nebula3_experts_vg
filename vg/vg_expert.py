@@ -39,6 +39,42 @@ import cv2
 @param: step - array of steps: [detect,track,depth]
 """
 
+
+def plot_vg_over_image(result, frame_, vg_param, lprob):
+    import numpy as np
+    print("SoftMax score of the decoder", lprob, lprob.sum())
+    caption = vg_param['caption']
+    print('Caption: {}'.format(caption))
+    window_name = 'Image'
+    image = np.array(frame_)
+    img = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+    normalizedImg = np.zeros_like(img)
+    normalizedImg = cv2.normalize(img, normalizedImg, 0, 255, cv2.NORM_MINMAX)
+    img = normalizedImg.astype('uint8')
+
+    image = cv2.rectangle(
+        img,
+        (int(result[0]["box"][0]), int(result[0]["box"][1])),
+        (int(result[0]["box"][2]), int(result[0]["box"][3])),
+        (0, 255, 0),
+        3
+    )
+    # print(caption)
+    movie_id = '111'
+    mdf = '-1'
+    path = './'
+    file = 'pokemon'
+    cv2.imshow(window_name, img)
+
+    cv2.setWindowTitle(window_name, str(movie_id) + '_mdf_' + str(mdf) + '_' + caption)
+    cv2.putText(image, file + '_ prob_' + str(lprob.sum().__format__('.3f')) + str(lprob),
+                fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5, color=(0, 0, 255), thickness=2,
+                lineType=cv2.LINE_AA, org=(10, 40))
+    fname = str(file) + '_' + str(caption) + '.png'
+    cv2.imwrite(os.path.join(path, fname),
+                image)  # (image * 255).astype(np.uint8))#(inp * 255).astype(np.uint8))
+
+
 class VisualGroundingExpert(BaseExpert):
     def __init__(self):
         super().__init__()
@@ -69,12 +105,14 @@ class VisualGroundingExpert(BaseExpert):
                 urllib.request.urlretrieve(url_link, self.temp_file)
                 video = cv2.VideoCapture(self.temp_file)
                 fps = video.get(cv2.CAP_PROP_FPS)
+                print(fps)
             except:
                 print(f'An exception occurred while fetching {url_link}')
                 result = False
+                fps = -1
+                video = {}
         # return result
 
-        print(fps)
         return (fps, url_link, video)
 
     def _download_and_get_minfo(self, mid, to_print=False):
@@ -109,11 +147,27 @@ class VisualGroundingExpert(BaseExpert):
                     feature_mdfs = []
                     video.set(cv2.CAP_PROP_POS_FRAMES, mdf)
                     ret, frame_ = video.read()  # Read the frame
-                    bb, scores, lprob = self.vg_engine.find_visual_grounding(Image.fromarray(frame_), vg_param['caption'])
+                    results, scores, lprob = self.vg_engine.find_visual_grounding(Image.fromarray(frame_), vg_param['caption'])
+                    lprob = lprob.sum()
+                    debug = True
+                    if debug:
+                        plot_vg_over_image(results, frame_, vg_param, lprob)
 
         if bb == []:
             {'error': f"movie frames not found: {vg_param['movie_id']}"}
-        return {'result': bb, 'error': error}
+
+        result = self._transform_vg_result(vg_result={'bbox': results[0]['box'], 'lprob': lprob}, expert_params=vg_param)
+
+        return {'result': result, 'error': error}
+
+    def _transform_vg_result(self, vg_result, expert_params: ExpertParam):
+        # print(vg_result)
+        tr = TokenRecord(expert_params['movie_id'],
+                         0, 0, self.get_name(),
+                         vg_result['bbox'],
+                         -1,
+                         {'lprob': vg_result['lprob'], 'mdf': expert_params['mdf']})
+        return tr
 
     def parse_vg_params(self, expert_params: ExpertParam):
         error = None
@@ -243,10 +297,10 @@ class VisualGroundingExpert(BaseExpert):
     #         )
     #     return track_data
 
-    def transform_tracking_result(self, tracking_result, vg_params):
-        # print(tracking_result)
+    def transform_vg_result(self, vg_result, vg_params):
+        # print(vg_result)
         result = list()
-        for oid, data in tracking_result.items():
+        for oid, data in vg_result.items():
             label = data['class'] + str(oid)
             print(data['boxes'])
             print(data['scores'])
