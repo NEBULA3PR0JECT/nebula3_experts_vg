@@ -1,4 +1,11 @@
-# nebula3_experts
+# nebula3 visual grounding expert
+
+Based on OFA VG:
+
+OFA is a unified multimodal pretrained model that unifies modalities (i.e., cross-modality, vision, language) and tasks (e.g., image generation, visual grounding, image captioning, image classification, text generation, etc.) to a simple sequence-to-sequence learning framework. For more information, please refer to our paper: Unifying Architectures, Tasks, and Modalities Through a Simple Sequence-to-Sequence Learning Framework.
+
+https://github.com/OFA-Sys/OFA
+
 ## Base module for all experts
 
 ## Expert Configuration
