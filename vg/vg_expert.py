@@ -17,27 +17,6 @@ sys.path.append("/home/hanoch/projects/nebula3_experts_vg/vg")
 sys.path.append("/home/hanoch/projects/nebula3_experts_vg/vg/run_scripts/refcoco")
 from .visual_grounding_inference import OfaMultiModalVisualGrounding
 import cv2
-# remove for microservice, enable for vscode container
-#sys.path.remove("/notebooks")
-
-# sys.path.append("/notebooks/tracker/autotracker")
-# sys.path.append("/notebooks/tracker/autotracker/tracking/../../..")
-
-# import tracker.autotracker as at
-
-# ACTION_DETECT = 'detect'
-# ACTION_TRACK = 'track'
-# ACTION_DEPTH = 'depth'
-# ACTION_ALL = 'all' # track+depth
-
-""" Predict params
-@param: predict_every: how many frames to track before accepting detection model detections.
-@param: merge_iou_threshold: the IOU score threhold for merging items during tracking.
-@param: refresh_on_detect: if True, removes all tracked items that were not found by the detection model.
-@param: tracker_type - TRACKER_TYPE_KCF / TRACKER_TYPE_CSRT
-@param: batch_size
-@param: step - array of steps: [detect,track,depth]
-"""
 
 
 def plot_vg_over_image(result, frame_, vg_param, lprob):
@@ -67,7 +46,7 @@ def plot_vg_over_image(result, frame_, vg_param, lprob):
     cv2.imshow(window_name, img)
 
     cv2.setWindowTitle(window_name, str(movie_id) + '_mdf_' + str(mdf) + '_' + caption)
-    cv2.putText(image, file + '_ prob_' + str(lprob.sum().__format__('.3f')) + str(lprob),
+    cv2.putText(image, caption + '_ prob_' + str(lprob.sum().__format__('.3f')) + str(lprob),
                 fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5, color=(0, 0, 255), thickness=2,
                 lineType=cv2.LINE_AA, org=(10, 40))
     fname = str(file) + '_' + str(caption) + '.png'
@@ -149,16 +128,20 @@ class VisualGroundingExpert(BaseExpert):
                     ret, frame_ = video.read()  # Read the frame
                     results, scores, lprob = self.vg_engine.find_visual_grounding(Image.fromarray(frame_), vg_param['caption'])
                     lprob = lprob.sum()
-                    debug = True
+                    debug = False
                     if debug:
                         plot_vg_over_image(results, frame_, vg_param, lprob)
 
+                    result = self._transform_vg_result(vg_result={'bbox': results[0]['box'], 'lprob': float(lprob)},
+                                                       expert_params=vg_param)
+                    return [result], error
+
         if bb == []:
             {'error': f"movie frames not found: {vg_param['movie_id']}"}
+            return [-1], error
 
-        result = self._transform_vg_result(vg_result={'bbox': results[0]['box'], 'lprob': lprob}, expert_params=vg_param)
 
-        return {'result': result, 'error': error}
+
 
     def _transform_vg_result(self, vg_result, expert_params: ExpertParam):
         # print(vg_result)
@@ -233,69 +216,11 @@ class VisualGroundingExpert(BaseExpert):
         """
         movie = self.movie_db.get_movie(movie_id)
         mdf = self.movie_db.get_mdfs(movie_id)
-        if 0:
-            self.tracker_dispatch_dict[movie_id] = {}
-            # loading the movie frames
-            num_frames = self.movie_s3.downloadDirectoryFroms3(movie_id)
         return movie, mdf
 
     def get_vg(self):
 
         return
-    # def detect(self, detect_params: StepParam):
-    #     """detector step
-    #     Args:
-    #         detect_params (StepParam): _description_
-    #     Returns:
-    #         aggs: _description_
-    #     """
-    #     return self.model.predict_video(detect_params['movie_id'],
-    #                              batch_size = detect_params.batch_size,
-    #                              pred_every = detect_params.detect_every,
-    #                              show_pbar = False)
-    #
-    # def transform_detection_result(self, detection_result, detect_params: StepParam):
-    #     """transform detection result to the token db format
-    #     Args:
-    #         detection_result (_type_): _description_
-    #         output (_type_): json/db - transforming for json output or for db
-    #     """
-    #     # print(detection_result)
-    #     detections = {}
-    #     result = list()
-    #     for detection in detection_result:
-    #         detection_boxes = detection['detection_boxes']
-    #         detection_scores = detection['detection_scores']
-    #         detection_classes = detection['detection_classes']
-    #         for idx in range(len(detection_classes)):
-    #             cls = detection_classes[idx]
-    #             bbox = detection_boxes[idx]
-    #             score = detection_scores[idx]
-    #             element = {'bbox': bbox.tolist(), 'score': float(score.flat[0]) }
-    #             if cls in detections:
-    #                 detections[cls].append(element)
-    #             else:
-    #                 detections[cls] = [element]
-    #             tr = TokenRecord(detect_params['movie_id'],
-    #                             0, 0, self.get_name(),
-    #                             detections[cls],
-    #                             cls,
-    #                             {'class': 'Object'})
-    #             result.append(tr)
-    #     return result
-
-    # def track(self, track_params: StepParam):
-    #     track_data = at.tracking_utils.MultiTracker.track_video_objects(
-    #             video_path=track_params['movie_id'],
-    #             detection_model=self.model,
-    #             detect_every=track_params.detect_every,
-    #             merge_iou_threshold=track_params.merge_iou_threshold,
-    #             tracker_type=track_params.tracker_type,
-    #             refresh_on_detect=track_params.refresh_on_detect,
-    #             show_pbar=False,
-    #             logger=self.logger
-    #         )
-    #     return track_data
 
     def transform_vg_result(self, vg_result, vg_params):
         # print(vg_result)

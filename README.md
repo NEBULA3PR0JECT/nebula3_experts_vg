@@ -28,3 +28,34 @@
 # todo:
 - add get/set logger level
 
+# Runing example out of MSR-VTT
+Pycharm running as sa module "uvicorn"
+vg.vg_expert:app --reload --host 0.0.0.0 --port 8889
+
+Env variables 
+ARANGO_DB = prodemo
+WEB_SERVER =     # empty
+ARANGO_HOST 172.83.9.249
+
+ - create an http file api.http
+ - From visual studiop copy the following and press the grayed "Send Request
+
+POST http://localhost:8889/predict
+content-type: application/json
+
+{
+    "movie_id": "Movies/308374",
+    "local": false,
+    "extra_params": {
+        "mdf": 3,
+        "caption": "a basketball player jumping"
+    }
+}
+
+The response will be returned make sure the following msg is typed
+
+INFO:     127.0.0.1:53726 - "POST /predict HTTP/1.1" 200 OK
+
+The groundeing, bounding box, alongwith the log likelihood will be reported back to the u service by the JSON in the TokenRecord format
+
+if variable debug in vg_expert.py is True then also the image with the BB will be plotted

@@ -26,8 +26,10 @@ class OfaMultiModalVisualGrounding():
 
         # Load pretrained ckpt & config
         overrides = {"bpe_dir": "vg/utils/BPE"}
+        model_path = os.getenv('model_path', 'vg/checkpoints/refcoco_large_best.pt')
+
         self.models, cfg, self.task = checkpoint_utils.load_model_ensemble_and_task(
-            utils.split_paths('vg/checkpoints/refcoco_large_best.pt'),  #HK @@ TODO move to os.getenv
+            utils.split_paths(model_path),
             arg_overrides=overrides
         )
 

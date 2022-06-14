@@ -6,11 +6,11 @@ POST http://localhost:8889/predict
 content-type: application/json
 
 {
-    "movie_id": "Movies/114207740",
+    "movie_id": "Movies/308374",
     "local": false,
     "extra_params": {
-        "mdf": 26,
-        "caption": "A man shoots himself in the leg with a pistol in front of other men in a street"
+        "mdf": 3,
+        "caption": "a basketball player jumping"
     }
 }
 
