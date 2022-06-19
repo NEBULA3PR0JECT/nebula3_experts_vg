@@ -112,12 +112,23 @@ class VisualGroundingExpert(BaseExpert):
 
     def predict(self, expert_params: ExpertParam):
         """ handle new movie """
+        time_measure = False
         vg_param, error = self.parse_vg_params(expert_params)
         if error:
             movie_id = expert_params['movie_id']if  expert_params['movie_id']else ''
             return { 'error': f'error {error} for movie: {movie_id}'}
 
+        if time_measure:
+            import time
+            since = time.time()
+
         movie_info, fps, fn, video = self._download_and_get_minfo(expert_params.movie_id, to_print=True)
+
+        if time_measure:
+            time_elapsed = time.time() - since
+            print('Loading movie {:.0f}m {:.0f}s'.format(
+                time_elapsed // 60, time_elapsed % 60))
+
         bb = list()
         for elem_inx, elem in enumerate(movie_info['scene_elements']):
             mdfs = movie_info['mdfs'][elem_inx]
@@ -126,7 +137,17 @@ class VisualGroundingExpert(BaseExpert):
                     feature_mdfs = []
                     video.set(cv2.CAP_PROP_POS_FRAMES, mdf)
                     ret, frame_ = video.read()  # Read the frame
+                    frame_ = cv2.cvtColor(frame_, cv2.COLOR_BGR2RGB)  # HK @@
+
+                    if time_measure:
+                        since = time.time()
+
                     results, scores, lprob = self.vg_engine.find_visual_grounding(Image.fromarray(frame_), vg_param['caption'])
+
+                    if time_measure:
+                        time_elapsed = time.time() - since
+                        print('OFa VG time {:.3f}s'.format(time_elapsed))
+
                     lprob = lprob.sum()
                     debug = False
                     if debug:
@@ -137,7 +158,7 @@ class VisualGroundingExpert(BaseExpert):
                     return [result], error
 
         if bb == []:
-            {'error': f"movie frames not found: {vg_param['movie_id']}"}
+            error = {'error': f"movie frames not found: {vg_param['movie_id']}"}
             return [-1], error
 
 

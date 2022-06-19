@@ -66,3 +66,7 @@ INFO:     127.0.0.1:53726 - "POST /predict HTTP/1.1" 200 OK
 The groundeing, bounding box, alongwith the log likelihood will be reported back to the u service by the JSON in the TokenRecord format
 
 if variable debug in vg_expert.py is True then also the image with the BB will be plotted
+
+Time measurements:
+
+timing : VG : ~0.5Sec + 3-4 sec download a movie and extract MDF

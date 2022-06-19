@@ -9,7 +9,7 @@ content-type: application/json
     "movie_id": "Movies/308374",
     "local": false,
     "extra_params": {
-        "mdf": 3,
+        "mdf": 100,
         "caption": "a basketball player jumping"
     }
 }
