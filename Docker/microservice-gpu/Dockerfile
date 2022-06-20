@@ -48,15 +48,25 @@ RUN /opt/conda/bin/conda config --append channels conda-forge && /opt/conda/bin/
 # RUN conda install jupyterlab && conda clean --all --yes
 RUN conda clean --all --yes
 
+# RUN git clone https://github.com/NEBULA3PR0JECT/nebula3_experts.git && git clone https://github.com/NEBULA3PR0JECT/nebula3_pipeline.git \
+#     && git clone https://github.com/NEBULA3PR0JECT/nebula3_vlm.git && git clone https://github.com/NEBULA3PR0JECT/nebula3_database.git && mkdir notebooks
 
-RUN git clone https://github.com/NEBULA3PR0JECT/nebula3_experts.git && git clone https://github.com/NEBULA3PR0JECT/nebula3_pipeline.git \ 
-    && git clone https://github.com/NEBULA3PR0JECT/nebula3_vlm.git && git clone https://github.com/NEBULA3PR0JECT/nebula3_database.git && mkdir notebooks
-
-RUN cp -r /nebula3_experts/. /notebooks/ && cp -r /nebula3_pipeline/. /notebooks/nebula3_pipeline/ \
-&& cp -r /nebula3_vlm/. /notebooks/nebula3_vlm/ && cp -r /nebula3_database/. /notebooks/nebula3_pipeline/nebula3_database/ \
-&& cp -r /nebula3_database/. /notebooks/nebula3_vlm/nebula3_database/
+# RUN cp -r /nebula3_experts/. /notebooks/ && cp -r /nebula3_pipeline/. /notebooks/nebula3_pipeline/ \
+# && cp -r /nebula3_vlm/. /notebooks/nebula3_vlm/ && cp -r /nebula3_database/. /notebooks/nebula3_pipeline/nebula3_database/ \
+# && cp -r /nebula3_database/. /notebooks/nebula3_vlm/nebula3_database/
 
 WORKDIR /notebooks
 
 EXPOSE 8088
+
+#install tracker - microservice docker part
+# RUN apt-get update && apt-get install zip -y
+
+COPY . .
+RUN cd vg/checkpoints && wget https://ofa-beijing.oss-cn-beijing.aliyuncs.com/checkpoints/refcoco_large_best.pt
+RUN cd vg && pip install -r requirements.txt
+#RUN chmod a+x tracker/setup_docker_env.sh && cd tracker && /bin/bash ./setup_docker_env.sh
+# conda activate detectron
+#RUN cd tracker/autotracker/detection_models/tflow && chmod +x setup.sh && /bin/bash ./setup.sh
+
 CMD ["uvicorn", "test.main:app", "--host", "0.0.0.0", "--port", "8088"]
