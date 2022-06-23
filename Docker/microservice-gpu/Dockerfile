@@ -9,7 +9,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/Moscow
 
 RUN rm /etc/apt/sources.list.d/cuda.list
-RUN rm /etc/apt/sources.list.d/nvidia-ml.list
+#RUN rm /etc/apt/sources.list.d/nvidia-ml.list
 
 RUN apt-get update --fix-missing && \
     apt-get install -y wget bzip2 ca-certificates libglib2.0-0 libxext6 libsm6 libxrender1 git mercurial subversion curl && \
@@ -63,10 +63,10 @@ EXPOSE 8088
 # RUN apt-get update && apt-get install zip -y
 
 COPY . .
-RUN cd vg/checkpoints && wget https://ofa-beijing.oss-cn-beijing.aliyuncs.com/checkpoints/refcoco_large_best.pt
+RUN mkdir -p vg/checkpoints && cd vg/checkpoints && wget https://ofa-beijing.oss-cn-beijing.aliyuncs.com/checkpoints/refcoco_large_best.pt
 RUN cd vg && pip install -r requirements.txt
 #RUN chmod a+x tracker/setup_docker_env.sh && cd tracker && /bin/bash ./setup_docker_env.sh
 # conda activate detectron
 #RUN cd tracker/autotracker/detection_models/tflow && chmod +x setup.sh && /bin/bash ./setup.sh
 
-CMD ["uvicorn", "test.main:app", "--host", "0.0.0.0", "--port", "8088"]
+CMD ["uvicorn", "vg.vg_expert:app", "--host", "0.0.0.0"]
