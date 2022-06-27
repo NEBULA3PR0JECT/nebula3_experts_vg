@@ -64,7 +64,7 @@ def plot_vg_over_image(result, frame_, caption, lprob):
 
 class VisualGroundingVlmImplementation(VlmInterface):
     def __init__(self):
-        self.model = OfaMultiModalVisualGrounding()
+        self.vg_engine = OfaMultiModalVisualGrounding()
     
     def load_image(self):
         pass
@@ -75,7 +75,7 @@ class VisualGroundingVlmImplementation(VlmInterface):
             import time
             since = time.time()
 
-        results, _, lprob = self.vg_engine.find_visual_grounding(Image.fromarray(image), text)
+        results, _, lprob = self.vg_engine.find_visual_grounding(image, text)
 
         if time_measure:
             time_elapsed = time.time() - since
