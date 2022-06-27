@@ -12,12 +12,18 @@ import json
 from fastapi import FastAPI
 import urllib
 from PIL import Image
+
+sys.path.append("/notebooks/nebula3_experts")
+sys.path.append("/notebooks/nebula3_experts/nebula3_pipeline")
+sys.path.append("/notebooks/nebula3_experts/nebula3_pipeline/nebula3_database")
+
 from nebula3_experts.experts.service.base_expert import BaseExpert
 from nebula3_experts.experts.app import ExpertApp
 from nebula3_experts.experts.common.models import ExpertParam, TokenRecord
 from nebula3_database.config import NEBULA_CONF
 from nebula3_database.movie_db import MOVIE_DB
 from nebula3_videoprocessing.videoprocessing.vlm_interface import VlmInterface
+from nebula3_experts.nebula3_pipeline.nebula3_database.config import NEBULA_CONF
 from .visual_grounding_inference import OfaMultiModalVisualGrounding
 import cv2
 
