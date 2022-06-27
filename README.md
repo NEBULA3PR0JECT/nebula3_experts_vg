@@ -70,3 +70,8 @@ if variable debug in vg_expert.py is True then also the image with the BB will b
 Time measurements:
 
 timing : VG : ~0.5Sec + 3-4 sec download a movie and extract MDF
+
+# For stand alone 
+conda install --file environment.yml
+Run :
+setup.sh
