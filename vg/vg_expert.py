@@ -1,6 +1,13 @@
 # uvicorn vg.vg_expert:app --reload --host 0.0.0.0 --port 8889
 import os
 import sys
+sys.path.append("/notebooks/nebula3_experts_vg/nebula3_experts")
+sys.path.append("/notebooks/nebula3_experts_vg/nebula3_experts/nebula3_pipeline")
+sys.path.append("/notebooks/nebula3_experts_vg/nebula3_experts/nebula3_pipeline/nebula3_database")
+sys.path.append("/notebooks/nebula3_experts_vg/vg/run_scripts/refcoco")
+sys.path.append("/notebooks/nebula3_experts_vg/vg")
+sys.path.append("/notebooks/nebula3_experts_vg")
+
 import json
 from fastapi import FastAPI
 import urllib
@@ -10,19 +17,14 @@ from nebula3_experts.experts.app import ExpertApp
 from nebula3_experts.experts.common.models import ExpertParam, TokenRecord
 from nebula3_database.config import NEBULA_CONF
 from nebula3_database.movie_db import MOVIE_DB
-sys.path.append("/home/hanoch/projects/nebula3_experts_vg/nebula3_experts/nebula3_pipeline")
-sys.path.append("/home/hanoch/projects/nebula3_experts_vg/nebula3_experts/nebula3_pipeline/nebula3_database")
-sys.path.append("home/hanoch/projects/OFA_fork/OFA/run_scripts/refcoco")
-sys.path.append("/home/hanoch/projects/nebula3_experts_vg/vg")
-sys.path.append("/home/hanoch/projects/nebula3_experts_vg/vg/run_scripts/refcoco")
+from nebula3_videoprocessing.videoprocessing.vlm_interface import VlmInterface
 from .visual_grounding_inference import OfaMultiModalVisualGrounding
 import cv2
 
 
-def plot_vg_over_image(result, frame_, vg_param, lprob):
+def plot_vg_over_image(result, frame_, caption, lprob):
     import numpy as np
     print("SoftMax score of the decoder", lprob, lprob.sum())
-    caption = vg_param['caption']
     print('Caption: {}'.format(caption))
     window_name = 'Image'
     image = np.array(frame_)
@@ -54,6 +56,33 @@ def plot_vg_over_image(result, frame_, vg_param, lprob):
                 image)  # (image * 255).astype(np.uint8))#(inp * 255).astype(np.uint8))
 
 
+class VisualGroundingVlmImplementation(VlmInterface):
+    def __init__(self):
+        self.model = OfaMultiModalVisualGrounding()
+    
+    def load_image(self):
+        pass
+
+    def compute_similarity(self, image : Image, text : list[str]):
+        time_measure = False
+        if time_measure:
+            import time
+            since = time.time()
+
+        results, _, lprob = self.vg_engine.find_visual_grounding(Image.fromarray(image), text)
+
+        if time_measure:
+            time_elapsed = time.time() - since
+            print('OFa VG time {:.3f}s'.format(time_elapsed))
+
+        lprob = lprob.sum()
+        debug = False
+        if debug:
+            plot_vg_over_image(results, image, caption=text, lprob=lprob)
+
+        return lprob.detach().numpy()[0]
+
+
 class VisualGroundingExpert(BaseExpert):
     def __init__(self):
         super().__init__()
@@ -65,7 +94,7 @@ class VisualGroundingExpert(BaseExpert):
         # Database interface for movie download
         config = NEBULA_CONF()
         self.url_prefix = config.get_webserver() #self.url_prefix = self.db_conf.get_webserver()
-        self.nre = MOVIE_DB()
+        self.nre = self.movie_db
         self.db = self.nre.db
         self.temp_file = "/tmp/file.mp4"
 
@@ -109,7 +138,7 @@ class VisualGroundingExpert(BaseExpert):
 
     def add_expert_apis(self, app: FastAPI):
         pass
-
+        
     def predict(self, expert_params: ExpertParam):
         """ handle new movie """
         time_measure = False
@@ -151,7 +180,7 @@ class VisualGroundingExpert(BaseExpert):
                     lprob = lprob.sum()
                     debug = False
                     if debug:
-                        plot_vg_over_image(results, frame_, vg_param, lprob)
+                        plot_vg_over_image(results, frame_, caption=vg_param['caption'], lprob=lprob)
 
                     result = self._transform_vg_result(vg_result={'bbox': results[0]['box'], 'lprob': float(lprob)},
                                                        expert_params=vg_param)

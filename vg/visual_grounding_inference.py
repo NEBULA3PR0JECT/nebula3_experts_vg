@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import torch
 import numpy as np
+import sys
+sys.path.append("/notebooks/nebula3_experts_vg/vg/fairseq")
 from fairseq import utils, tasks
 from fairseq import checkpoint_utils
 from .utils.eval_utils import eval_step
@@ -25,8 +27,8 @@ class OfaMultiModalVisualGrounding():
         self.use_fp16 = False
 
         # Load pretrained ckpt & config
-        overrides = {"bpe_dir": "vg/utils/BPE"}
-        model_path = os.getenv('model_path', 'vg/checkpoints/refcoco_large_best.pt')
+        overrides = {"bpe_dir": "nebula3_experts_vg/vg/utils/BPE"}
+        model_path = os.getenv('model_path', 'nebula3_experts_vg/vg/checkpoints/refcoco_large_best.pt')
 
         self.models, cfg, self.task = checkpoint_utils.load_model_ensemble_and_task(
             utils.split_paths(model_path),
