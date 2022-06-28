@@ -75,7 +75,7 @@ class VisualGroundingVlmImplementation(VlmInterface):
             import time
             since = time.time()
 
-        results, _, lprob = self.vg_engine.find_visual_grounding(image, text)
+        bb, _, lprob = self.vg_engine.find_visual_grounding(image, text)
 
         if time_measure:
             time_elapsed = time.time() - since
@@ -84,9 +84,9 @@ class VisualGroundingVlmImplementation(VlmInterface):
         lprob = lprob.sum()
         debug = False
         if debug:
-            plot_vg_over_image(results, image, caption=text, lprob=lprob)
+            plot_vg_over_image(bb, image, caption=text, lprob=lprob)
 
-        return lprob.detach().numpy()[0]
+        return bb, lprob.cpu().numpy()
 
 
 class VisualGroundingExpert(BaseExpert):
